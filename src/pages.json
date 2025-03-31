@@ -1,0 +1,101 @@
+{
+	// 配置 easycom 规则，让 npm 安装的组件支持 easycom
+	"easycom": {
+		"autoscan": true,
+		"custom": {
+			// uni-ui 规则如下配置
+			"^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
+		}
+	},
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/home/home",
+			"style": {
+				"navigationBarTitleText": "首页"
+			
+			}
+		},
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "登录"
+			}
+		},
+
+		{
+			"path": "pages/shop/shop",
+			"style": {
+				"navigationBarTitleText": "闲逛",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/know/know",
+			"style": {
+				"navigationBarTitleText": "艾家",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/user/user",
+			"style": {
+				"navigationBarTitleText": "我的"
+				
+			}
+		}
+	],
+	"tabBar": {
+		"custom": false,
+		"backgroundColor": "#ffffff",
+		"borderStyle": "black",
+		"color": "#7A7A7A",
+		"selectedColor": "#498EF5FF",
+		"list": [{
+				"pagePath": "pages/home/home",
+				"text": "推荐",
+				"iconPath": "/static/image/home.png",
+				"selectedIconPath": "/static/image/home_active.png"
+
+			},
+			{
+				"pagePath": "pages/shop/shop",
+				"text": "闲逛",
+				"iconPath": "/static/image/shop.png",
+				"selectedIconPath": "/static/image/shop_active.png"
+
+			},
+			{
+				"pagePath": "pages/know/know",
+				"text": "艾家",
+				"iconPath": "/static/image/know.png",
+				"selectedIconPath": "/static/image/know_active.png"
+
+			},
+			{
+				"pagePath": "pages/user/user",
+				"text": "我的",
+				"iconPath": "/static/image/user.png",
+				"selectedIconPath": "/static/image/user_active.png"
+
+			}
+		]
+	},
+	"condition": {
+		"current": 0,
+		"list": [{
+			"name": "首页",
+			"path": "pages/home/home",
+			"query": ""
+		}]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "艾和天下",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"usingComponents": {
+			"custom-tab-bar": "./custom-tab-bar/index"
+
+		}
+	}
+}

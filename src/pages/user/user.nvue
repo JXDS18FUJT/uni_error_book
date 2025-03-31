@@ -1,0 +1,31 @@
+<template>
+	<view >
+		<view class="border-base bg-yellow" style="color: #fff;">是{{userName}}这是代码</view>
+		<view>目前的情况是</view>
+		<text style="color: #ff4400;">hello</text>
+		<image src="/static/image/home.png" class="w-25" mode="widthFix"></image>
+		<button @click="changeName('t')">改变用户</button>
+
+	</view>
+</template>
+
+<script lang="ts" setup>
+	import { computed, onMounted } from 'vue';
+import {useUserStore} from '@/store/user'
+	const userStore = useUserStore()
+	const userName = computed(()=>{
+		return userStore.name
+	})
+		
+	onMounted(()=>{
+			userStore.changeName('jack')
+	})
+
+	const changeName = userStore.changeName
+</script>
+
+<style>
+@import 'user.css'
+
+	
+</style>
