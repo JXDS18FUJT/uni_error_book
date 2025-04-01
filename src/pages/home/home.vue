@@ -1,6 +1,7 @@
 <template>
-	<view class="bg-yellow text-blue">首页1好</view>
-	<navigator url="/pages/user/user" open-type="switchTab">前往用户界面</navigator>
+	<view>
+		
+	</view>
 
 </template>
 <script>
