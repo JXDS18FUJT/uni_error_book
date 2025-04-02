@@ -7,10 +7,11 @@ export default async () => {
 	const UnoCSS = (await import('unocss/vite')).default
 	return defineConfig({
 		plugins: [
+			Uni(),
 			UnoCSS({
-				mode:'vue-scoped'
-			}),
-			Uni()
+				mode: 'vue-scoped'
+			})
+
 
 		]
 	})
