@@ -3,9 +3,9 @@ import FormData from '../formData.js'
 const login = {
 
 	//微信小程序上传文件接口
-	loginByWx(data) {
+	login(data) {
 		return request({
-			url: "app/login",
+			url: "/login",
 			method: "POST",
 			data
 		})
