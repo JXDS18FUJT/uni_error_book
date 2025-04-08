@@ -9,16 +9,17 @@
 	},
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/home/home",
+			"path": "pages/login/login",
 			"style": {
-				"navigationBarTitleText": "首页"
-			
+				"navigationBarTitleText": "登录页面"
+
 			}
 		},
 		{
-			"path": "pages/login/login",
+			"path": "pages/home/home",
 			"style": {
-				"navigationBarTitleText": "登录"
+				"navigationBarTitleText": "首页"
+
 			}
 		},
 
@@ -32,15 +33,15 @@
 		{
 			"path": "pages/know/know",
 			"style": {
-				"navigationBarTitleText": "艾家",
-				"navigationStyle": "custom"
+				"navigationBarTitleText": "上传",
+				"navigationStyle": "default"
 			}
 		},
 		{
 			"path": "pages/user/user",
 			"style": {
 				"navigationBarTitleText": "我的"
-				
+
 			}
 		}
 	],
