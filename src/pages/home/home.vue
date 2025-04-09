@@ -8,7 +8,8 @@
 			<uni-forms-item name="password" label="密码">
 				<uni-easyinput v-model="formData.password" type="text" placeholder="请输入密码" />
 			</uni-forms-item>
-			<button class="button" @click="submit">校验表单</button>
+			<button class="button" @click="submit">登录</button>
+		<navigator url="/pages/login/login">前往登录</navigator>
 		</uni-forms>
 	</view>
 
