@@ -3,7 +3,6 @@
 		<uni-forms ref="form" :modelValue="formData">
 			<uni-forms-item name="username" label="用户名">
 				<uni-easyinput v-model="formData.username" type="text" placeholder="请输入用户名" />
-
 			</uni-forms-item>
 			<uni-forms-item name="password" label="密码">
 				<uni-easyinput v-model="formData.password" type="text" placeholder="请输入密码" />
