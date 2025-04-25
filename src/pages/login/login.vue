@@ -14,7 +14,7 @@
 		</view>
 
 	</view>
-
+ 
 </template>
 <script lang="ts">
 	import api from '@/api'
