@@ -16,6 +16,13 @@
 			}
 		},
 		{
+			"path": "pages/loginByWx/loginByWx",
+			"style": {
+				"navigationBarTitleText": "登录页面"
+		
+			}
+		},
+		{
 			"path": "pages/home/home",
 			"style": {
 				"navigationBarTitleText": "首页1"
@@ -84,9 +91,14 @@
 	"condition": {
 		"current": 0,
 		"list": [{
-			"name": "标签",
+			"name": "登录",
 			"path": "pages/login/login",
 			"query": ""
+		},	{
+			"name": "微信登录",
+			"path": "pages/loginByWx/loginByWx",
+			"query": ""
+			
 		}]
 	},
 	"globalStyle": {
