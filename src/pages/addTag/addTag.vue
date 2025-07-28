@@ -1,6 +1,6 @@
 <template>
 	<view>
-		最近
+		
 	</view>
 </template>
 
