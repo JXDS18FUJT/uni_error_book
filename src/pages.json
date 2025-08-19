@@ -19,7 +19,7 @@
 			"path": "pages/loginByWx/loginByWx",
 			"style": {
 				"navigationBarTitleText": "登录页面"
-		
+
 			}
 		},
 		{
@@ -48,6 +48,15 @@
 			"path": "pages/user/user",
 			"style": {
 				"navigationBarTitleText": "我的"
+
+			}
+		},
+		{
+			"path": "pages/carVideo/index",
+			"style": {
+				"navigationBarTitleText": "学车",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
 
 			}
 		}
@@ -94,11 +103,16 @@
 			"name": "登录",
 			"path": "pages/login/login",
 			"query": ""
-		},	{
+		}, {
 			"name": "微信登录",
 			"path": "pages/loginByWx/loginByWx",
 			"query": ""
-			
+
+		},{
+			"name": "首页",
+			"path": "pages/carVideo/index",
+			"query": ""
+
 		}]
 	},
 	"globalStyle": {
