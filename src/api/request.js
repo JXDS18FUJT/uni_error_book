@@ -2,7 +2,7 @@ import axios from 'axios'
 import mpAdapter from 'axios-miniprogram-adapter'
 axios.defaults.adapter = mpAdapter
 
-const baseUrl = "http://192.168.8.36:9091/"
+const baseUrl = "http://192.168.2.110:9091/"
 const service = axios.create({
 	// axios中请求配置有baseURL选项，表示请求URL公共部分
 	// baseURL: process.env.VUE_APP_BASE_API,

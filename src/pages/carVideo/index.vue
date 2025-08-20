@@ -89,42 +89,42 @@
 		<view >
 			<scroll-view @scroll="scrollTabs" class="tab" scroll-with-animation
 				:scroll-into-view="'tab-container' + active" enhanced style="width: 100%; white-space: nowrap"
-				enable-flex :scroll-x="true">
-				<view id="tab-container0" style="display: inline-block; white-space: nowrap;">
+				 :scroll-x="true">
+				<view id="tab-container0" style="display: inline-block; white-space: nowrap;width: 100%;">
 					<view class="tab-container">
-						<text style="color: #3AC770;">{{active}}</text>
+						<text style="color: #ffffff;">{{active}}</text>
 						<!-- <tab-left :subject="1" :query="tabQuery" :leftList="leftList1"></tab-left>
 						<tab-center :subject="1" :query="tabQuery" :centerList="centerList1"></tab-center>
 						<tab-right :subject="1" :query="tabQuery" :rightList="rightList1"></tab-right> -->
 					</view>
 
 				</view>
-				<view id="tab-container1" style="padding-top: 16rpx;display: inline-block; white-space: nowrap">
+				<view id="tab-container1" style="padding-top: 16rpx;display: inline-block; white-space: nowrap;width: 100%;">
 					<!-- <teacherVideo v-if="active == 1"></teacherVideo>
 					<view style="width: 100%;" v-else></view> -->
 					<view class="tab-container">
-						<text style="color: #3AC770;">{{active}}</text>
+						<text style="color: #ffffff;">{{active}}</text>
 					</view>
 
 				</view>
-				<view id="tab-container2" style="display: inline-block; white-space: nowrap">
+				<view id="tab-container2" style="display: inline-block; white-space: nowrap;width: 100%;">
 					<!-- <view class="tab-container">
 						<tab-left :query="tabQuery" :subject="4" :leftList="leftList4"></tab-left>
 						<tab-center :query="tabQuery" :subject="4" :centerList="centerList4"></tab-center>
 						<tab-right :query="tabQuery" :subject="4" :rightList="rightList4"></tab-right>
 					</view> -->
 					<view class="tab-container">
-						<text style="color: #3AC770;">{{active}}</text>
+						<text style="color: #ffffff;">{{active}}</text>
 					</view>
 				</view>
-				<view id="tab-container3" style="display: inline-block; white-space: nowrap">
+				<view id="tab-container3" style="display: inline-block; white-space: nowrap;width: 100%;">
 					<!-- 	<view class="tab-container">
 						<tab-left :query="tabQuery" :subject="12" :leftList="leftList12"></tab-left>
 						<tab-center :query="tabQuery" :subject="12" :centerList="centerList12"></tab-center>
 						<tab-right :query="tabQuery" :subject="12" :rightList="rightList12"></tab-right>
 					</view> -->
 					<view class="tab-container">
-						<text style="color: #3AC770;">{{active}}</text>
+						<text style="color: #ffffff;">{{active}}</text>
 					</view>
 				</view>
 			</scroll-view>
@@ -233,6 +233,8 @@
 	.bg {
 		display: flex;
 		flex-wrap: wrap;
+		width: 750rpx;
+		overflow-x: hidden;
 
 		.msg {
 			font-size: 36rpx;
@@ -382,7 +384,8 @@
 				align-content: flex-start;
 				align-items: flex-start;
 				padding: 0 30rpx;
-				// min-height: 30rpx;
+				min-height: 30rpx;
+				background-color: #3AC770;
 			}
 		}
 	}

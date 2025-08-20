@@ -10,11 +10,12 @@
 					<uni-easyinput v-model="formData.password" type="text" placeholder="请输入密码" />
 				</uni-forms-item>
 				<button type="primary" class="button" @click="submit">登录</button>
+				<button type="primary" class="button" @click="loginByWx">微信登录</button>
 			</uni-forms>
 		</view>
 
 	</view>
- 
+
 </template>
 <script lang="ts">
 	import api from '@/api'
@@ -112,6 +113,23 @@
 
 				// 	}
 				// })
+			},
+			loginByWx() {
+				uni.login({
+					provider:'weixin',
+					"onlyAuthorize": true,
+					success(event) {
+						const {code} = event
+						console.log(event)
+					},
+					fail: function (err) {
+						console.log(err)
+					        // 登录授权失败
+					        // err.code是错误码
+					    }
+				})
+			
+				
 			}
 
 		}
