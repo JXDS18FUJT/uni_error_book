@@ -86,10 +86,9 @@
 			</view>
 		</view>
 
-		<view >
+		<view>
 			<scroll-view @scroll="scrollTabs" class="tab" scroll-with-animation
-				:scroll-into-view="'tab-container' + active" enhanced style="width: 100%; white-space: nowrap"
-				 :scroll-x="true">
+				:scroll-into-view="'tab-container' + active" enhanced style="white-space: nowrap" :scroll-x="true">
 				<view id="tab-container0" style="display: inline-block; white-space: nowrap;width: 100%;">
 					<view class="tab-container">
 						<text style="color: #ffffff;">{{active}}</text>
@@ -99,7 +98,8 @@
 					</view>
 
 				</view>
-				<view id="tab-container1" style="padding-top: 16rpx;display: inline-block; white-space: nowrap;width: 100%;">
+				<view id="tab-container1"
+					style="padding-top: 16rpx;display: inline-block; white-space: nowrap;width: 100%;">
 					<!-- <teacherVideo v-if="active == 1"></teacherVideo>
 					<view style="width: 100%;" v-else></view> -->
 					<view class="tab-container">
@@ -135,11 +135,13 @@
 </template>
 
 <script lang="ts" setup>
-	import { reactive, ref } from 'vue';
+	import { onMounted, reactive, ref } from 'vue';
 	import topbar from '../../components/topbar/topbar.vue';
 	import userInfoHead from './components/userInfoHead/userInfoHead.vue';
 	const msg = ref('hello world')
 	const systemInfo = uni.getSystemInfoSync()
+
+
 
 	const statusBarHeight = ref(systemInfo.statusBarHeight)
 	const carTypeIndex = ref(0)
@@ -178,6 +180,21 @@
 		sort: 3,
 		oldSubject: undefined,
 	})
+
+
+	let tabRects = ref<UniApp.NodeInfo[]>([])
+
+	// 计算每个tab的位置（宽度 + offsetLeft）
+	const calcTabs = () => {
+		uni.createSelectorQuery()
+			.in(this)
+			.selectAll('.tab-container')
+			.boundingClientRect(rects => {
+				console.log(rects)
+				tabRects.value = rects as UniApp.NodeInfo[]
+			})
+			.exec()
+	}
 	const changeVehicle = (item : any) => {
 		tabQuery.vehicle = item.typeName;
 		tabQuery.cert = item.title;
@@ -203,30 +220,76 @@
 		}
 	}
 
+	// 滚动事件
 	const scrollTabs = (e) => {
+		const scrollLeft = e.detail.scrollLeft
 
-		console.log(e);
-		//求百位数相同即可
-		if (Math.floor(e.detail.scrollLeft / 100) * 100 == 0) {
-			active.value = 0;
-			tabQuery.subject = 1;
 
-		}
-		else if (Math.floor(e.detail.scrollLeft / 100) * 100 > 0 && Math.floor(e.detail.scrollLeft / 100) * 100 < Math.floor(e.detail.scrollWidth / 4 * 1 / 100) * 100) {
-			active.value = 1;
-			tabQuery.subject = 1;
-		}
-		else if (Math.floor(e.detail.scrollLeft / 100) * 100 > Math.floor(e.detail.scrollWidth / 4 * 1 / 100) * 100 && Math.floor(e.detail.scrollLeft / 100) * 100 < Math.floor(e.detail.scrollWidth / 4 * 2 / 100) * 100) {
-			active.value = 2;
-			tabQuery.subject = 4;
-		}
-		else if (Math.floor(e.detail.scrollLeft / 100) * 100 > Math.floor(e.detail.scrollWidth / 4 * 2 / 100) * 100 && Math.floor(e.detail.scrollLeft / 100) * 100 < Math.floor(e.detail.scrollWidth / 4 * 3 / 100) * 100) {
-			active.value = 3;
-			tabQuery.subject = undefined;
-			tabQuery.oldSubject = 'k12';
-		}
+		for (let i = 0; i < tabRects.value.length; i++) {
+			const tab = tabRects.value[i];
+			const next = tabRects.value[i + 1]
+			if (!next || scrollLeft < next.left - tab.width / 2) {
+				switch (i) {
+					case 0:
 
+						tabQuery.subject = 1;
+						break;
+					case 1:
+
+						tabQuery.subject = 1;
+						break;
+					case 2:
+
+						tabQuery.subject = 4;
+						break;
+					case 3:
+
+						tabQuery.subject = undefined;
+						tabQuery.oldSubject = 'k12';
+						break;
+					default:
+						break
+
+
+
+
+				}
+				active.value = i
+				break
+
+
+			}
+		}
 	}
+
+	// const scrollTabs = (e) => {
+
+	// 	console.log(e);
+	// 	//求百位数相同即可
+	// 	if (Math.floor(e.detail.scrollLeft / 100) * 100 == 0) {
+	// 		active.value = 0;
+	// 		tabQuery.subject = 1;
+
+	// 	}
+	// 	else if (Math.floor(e.detail.scrollLeft / 100) * 100 > 0 && Math.floor(e.detail.scrollLeft / 100) * 100 < Math.floor(e.detail.scrollWidth / 4 * 1 / 100) * 100) {
+	// 		active.value = 1;
+	// 		tabQuery.subject = 1;
+	// 	}
+	// 	else if (Math.floor(e.detail.scrollLeft / 100) * 100 > Math.floor(e.detail.scrollWidth / 4 * 1 / 100) * 100 && Math.floor(e.detail.scrollLeft / 100) * 100 < Math.floor(e.detail.scrollWidth / 4 * 2 / 100) * 100) {
+	// 		active.value = 2;
+	// 		tabQuery.subject = 4;
+	// 	}
+	// 	else if (Math.floor(e.detail.scrollLeft / 100) * 100 > Math.floor(e.detail.scrollWidth / 4 * 2 / 100) * 100 && Math.floor(e.detail.scrollLeft / 100) * 100 < Math.floor(e.detail.scrollWidth / 4 * 3 / 100) * 100) {
+	// 		active.value = 3;
+	// 		tabQuery.subject = undefined;
+	// 		tabQuery.oldSubject = 'k12';
+	// 	}
+
+	// }
+
+	onMounted(() => {
+		calcTabs()
+	})
 </script>
 
 <style lang="scss">
@@ -361,7 +424,7 @@
 		}
 
 		.tab {
-			width: 100%;
+			width: 750rpx;
 			margin: 0 auto;
 			display: inline-block;
 			font-size: 36rpx;
@@ -378,7 +441,9 @@
 			}
 
 			.tab-container {
-				width: 750rpx;
+				// width: 750rpx;
+
+
 				display: flex;
 				justify-content: space-between;
 				align-content: flex-start;
@@ -386,6 +451,7 @@
 				padding: 0 30rpx;
 				min-height: 30rpx;
 				background-color: #3AC770;
+				flex: 0;
 			}
 		}
 	}

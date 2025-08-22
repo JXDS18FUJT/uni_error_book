@@ -1,36 +1,26 @@
 <script>
-	import globalData from '@/utils/globalData.js'
-	import parseTextObjectPath from "@/utils/parseTextObjectKey.js"
 	export default {
-		globalData: globalData,
+		globalData: {
+
+		},
 		methods: {
-			setGlobalData(objectPath, value) {
-				const objectPaths = parseTextObjectPath(objectPath)
-				//console.log(objectPaths)
-				let data = this.globalData
-				objectPaths.forEach((item, index) => {
-					if (index < objectPaths.length - 1) {
-						data = data[item]
-					} else {
-						
-						data[item] = value
-					}
-				})
-				uni.setStorageSync('globalData',this.globalData)
-				// for (var i = 0; i < objectPaths.length; i++) {
-				// 	if (i < objectPaths.length - 1) {
-				// 		data = data[objectPaths[i]]
-				// 	} else {
-				// 		data[objectPaths[i]] = value
-				// 	}
-				// }
-			},
-			setGlobalDataToStorage() {
-				uni.setStorageSync(this.globalData)
-			},
+
 		},
 
 		onLaunch: function() {
+			const systemInfo = uni.getSystemInfoSync()
+			if (systemInfo.platform === 'android') {
+				console.log('当前是安卓设备')
+				uni.setStorageSync('platform', 'android')
+			} else if (systemInfo.platform === 'ios') {
+				console.log('当前是苹果设备')
+				uni.setStorageSync('platform', 'ios')
+			} else {
+				console.log('当前是苹果设备')
+				uni.setStorageSync('platform', 'ios')
+			}
+			uni.setStorageSync('model',systemInfo.model)
+			uni.setStorageSync('system',systemInfo.system)
 			console.log('App Launch')
 		},
 		onShow: function() {

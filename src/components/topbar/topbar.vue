@@ -20,6 +20,7 @@
 				default:'transparent'
 			},
 		},
+		
 		mounted() {
 	
 		}
