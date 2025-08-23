@@ -91,7 +91,7 @@
 				:scroll-into-view="'tab-container' + active" enhanced style="white-space: nowrap" :scroll-x="true">
 				<view id="tab-container0" style="display: inline-block; white-space: nowrap;width: 100%;">
 					<view class="tab-container">
-						<text style="color: #ffffff;">{{active}}</text>
+						<tab-left :subject="1" :query="tabQuery" :leftList="leftList1"></tab-left>
 						<!-- <tab-left :subject="1" :query="tabQuery" :leftList="leftList1"></tab-left>
 						<tab-center :subject="1" :query="tabQuery" :centerList="centerList1"></tab-center>
 						<tab-right :subject="1" :query="tabQuery" :rightList="rightList1"></tab-right> -->
@@ -103,18 +103,19 @@
 					<!-- <teacherVideo v-if="active == 1"></teacherVideo>
 					<view style="width: 100%;" v-else></view> -->
 					<view class="tab-container">
-						<text style="color: #ffffff;">{{active}}</text>
+						<text style="color: #7fff50;">{{active}}</text>
 					</view>
 
 				</view>
 				<view id="tab-container2" style="display: inline-block; white-space: nowrap;width: 100%;">
+
 					<!-- <view class="tab-container">
 						<tab-left :query="tabQuery" :subject="4" :leftList="leftList4"></tab-left>
 						<tab-center :query="tabQuery" :subject="4" :centerList="centerList4"></tab-center>
 						<tab-right :query="tabQuery" :subject="4" :rightList="rightList4"></tab-right>
 					</view> -->
 					<view class="tab-container">
-						<text style="color: #ffffff;">{{active}}</text>
+						<tab-left :query="tabQuery" :subject="4" :leftList="leftList4"></tab-left>
 					</view>
 				</view>
 				<view id="tab-container3" style="display: inline-block; white-space: nowrap;width: 100%;">
@@ -123,8 +124,9 @@
 						<tab-center :query="tabQuery" :subject="12" :centerList="centerList12"></tab-center>
 						<tab-right :query="tabQuery" :subject="12" :rightList="rightList12"></tab-right>
 					</view> -->
+
 					<view class="tab-container">
-						<text style="color: #ffffff;">{{active}}</text>
+						<tab-left :query="tabQuery" :subject="12" :leftList="leftList12"></tab-left>
 					</view>
 				</view>
 			</scroll-view>
@@ -136,8 +138,9 @@
 
 <script lang="ts" setup>
 	import { onMounted, reactive, ref } from 'vue';
-	import topbar from '../../components/topbar/topbar.vue';
+	import tabLeft from './components/tabLeft/index.vue';
 	import userInfoHead from './components/userInfoHead/userInfoHead.vue';
+
 	const msg = ref('hello world')
 	const systemInfo = uni.getSystemInfoSync()
 
@@ -147,6 +150,79 @@
 	const carTypeIndex = ref(0)
 	const active = ref(0)
 	const resetTab = ref(true)
+	const leftList1 = [
+		{
+			img: "https://ndata.zzxcx.net/qcxj/mp-wx/carVideo/sequentialPractice@2x.png",
+			text: "顺序练习",
+			path: "/otherPages/classifyOrder/index",
+		},
+		{
+			img: "https://ndata.zzxcx.net/qcxj/mp-wx/carVideo/classificationExercise@2x.png",
+			text: "分类练习",
+			path: "/otherPages/classifyKind/index",
+		},
+		{
+			//img: "https://ndata.zzxcx.net/qcxj/mp-wx/carVideo/newRulesPaper@2x.png",
+			img:
+				"https://ndata.zzxcx.net/qcxj/mp-wx/carVideo/RealExaminationRoomSimulation@2x.png",
+			text: "真实考场模拟",
+			path: "/otherPages/realExam/begin",
+		},
+
+		{
+			img: "https://ndata.zzxcx.net/qcxj/mp-wx/carVideo/simulationResults@2x.png",
+			text: "模拟成绩",
+			path: "/otherPages/testScores/index",
+		},
+	]
+	const leftList4 = [
+		{
+			img: "https://ndata.zzxcx.net/qcxj/mp-wx/carVideo/sequentialPractice@2x.png",
+			text: "顺序练习",
+			path: "/otherPages/classifyOrder/index",
+		},
+		{
+			img: "https://ndata.zzxcx.net/qcxj/mp-wx/carVideo/classificationExercise@2x.png",
+			text: "分类练习",
+			path: "/otherPages/classifyKind/index",
+		},
+		{
+			img:
+				"https://ndata.zzxcx.net/qcxj/mp-wx/carVideo/RealExaminationRoomSimulation@2x.png",
+			text: "真实考场模拟",
+			path: "/otherPages/realExam/begin",
+		},
+
+		{
+			img: "https://ndata.zzxcx.net/qcxj/mp-wx/carVideo/simulationResults@2x.png",
+			text: "模拟成绩",
+			path: "/otherPages/testScores/index",
+		},
+	]
+	const leftList12 = [
+		{
+			img: "https://ndata.zzxcx.net/qcxj/mp-wx/carVideo/sequentialPractice@2x.png",
+			text: "顺序练习",
+			path: "/otherPages/classifyOrder/index",
+		},
+		{
+			img: "https://ndata.zzxcx.net/qcxj/mp-wx/carVideo/classificationExercise@2x.png",
+			text: "分类练习",
+			path: "/otherPages/classifyKind/index",
+		},
+		{
+			img:
+				"https://ndata.zzxcx.net/qcxj/mp-wx/carVideo/RealExaminationRoomSimulation@2x.png",
+			text: "真实考场模拟",
+			path: "/otherPages/realRecoveryExam/begin",
+		},
+
+		{
+			img: "https://ndata.zzxcx.net/qcxj/mp-wx/carVideo/simulationResults@2x.png",
+			text: "模拟成绩",
+			path: "/otherPages/testScores1/index",
+		},
+	]
 	const carType = [
 		{
 			img: "https://ndata.zzxcx.net/qcxj/mp-wx/carVideo/xc.png",
@@ -442,15 +518,13 @@
 
 			.tab-container {
 				// width: 750rpx;
-
-
 				display: flex;
 				justify-content: space-between;
 				align-content: flex-start;
 				align-items: flex-start;
 				padding: 0 30rpx;
 				min-height: 30rpx;
-				background-color: #3AC770;
+				color: #333;
 				flex: 0;
 			}
 		}
