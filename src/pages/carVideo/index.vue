@@ -92,6 +92,8 @@
 				<view id="tab-container0" style="display: inline-block; white-space: nowrap;width: 100%;">
 					<view class="tab-container">
 						<tab-left :subject="1" :query="tabQuery" :leftList="leftList1"></tab-left>
+						<tab-center :subject="1" :query="tabQuery" :centerList="centerList1"></tab-center>
+						<tab-right :subject="1" :query="tabQuery" :rightList="rightList1"></tab-right>
 						<!-- <tab-left :subject="1" :query="tabQuery" :leftList="leftList1"></tab-left>
 						<tab-center :subject="1" :query="tabQuery" :centerList="centerList1"></tab-center>
 						<tab-right :subject="1" :query="tabQuery" :rightList="rightList1"></tab-right> -->
@@ -116,6 +118,8 @@
 					</view> -->
 					<view class="tab-container">
 						<tab-left :query="tabQuery" :subject="4" :leftList="leftList4"></tab-left>
+						<tab-center :query="tabQuery" :subject="4" :centerList="centerList4"></tab-center>
+						<tab-right :query="tabQuery" :subject="4" :rightList="rightList4"></tab-right>
 					</view>
 				</view>
 				<view id="tab-container3" style="display: inline-block; white-space: nowrap;width: 100%;">
@@ -127,6 +131,8 @@
 
 					<view class="tab-container">
 						<tab-left :query="tabQuery" :subject="12" :leftList="leftList12"></tab-left>
+						<tab-center :query="tabQuery" :subject="12" :centerList="centerList12"></tab-center>
+						<tab-right :query="tabQuery" :subject="12" :rightList="rightList12"></tab-right>
 					</view>
 				</view>
 			</scroll-view>
@@ -139,6 +145,8 @@
 <script lang="ts" setup>
 	import { onMounted, reactive, ref } from 'vue';
 	import tabLeft from './components/tabLeft/index.vue';
+	import tabRight from './components/tabRight/index.vue';
+	import tabCenter from './components/tabCenter/index.vue';
 	import userInfoHead from './components/userInfoHead/userInfoHead.vue';
 
 	const msg = ref('hello world')
@@ -150,6 +158,42 @@
 	const carTypeIndex = ref(0)
 	const active = ref(0)
 	const resetTab = ref(true)
+	const centerList1 = [
+		{
+			img: "https://ndata.zzxcx.net/qcxj/mp-wx/carVideo/selectedTestQuestions@2x.png",
+			text: "精选考题",
+			path: "/otherPages/classifyChoose/index",
+		},
+		{
+			img: "https://ndata.zzxcx.net/qcxj/mp-wx/carVideo/simulationTestTopics@2x.png",
+			text: "模拟考试",
+			path: "/otherPages/beforeMockExam/index",
+		}
+	]
+	const centerList4 = [
+		{
+			img: "https://ndata.zzxcx.net/qcxj/mp-wx/carVideo/selectedTestQuestions@2x.png",
+			text: "精选考题",
+			path: "/otherPages/classifyChoose/index",
+		},
+		{
+			img: "https://ndata.zzxcx.net/qcxj/mp-wx/carVideo/simulationTestTopics@2x.png",
+			text: "模拟考试",
+			path: "/otherPages/beforeMockExam/index",
+		}
+	]
+	const centerList12 = [
+		{
+			img: "https://ndata.zzxcx.net/qcxj/mp-wx/carVideo/selectedTestQuestions@2x.png",
+			text: "精选考题",
+			path: "/otherPages/classifyChoose/index",
+		},
+		{
+			img: "https://ndata.zzxcx.net/qcxj/mp-wx/carVideo/simulationTestTopics@2x.png",
+			text: "模拟考试",
+			path: "/otherPages/beforeMockExam1/index",
+		}
+	]
 	const leftList1 = [
 		{
 			img: "https://ndata.zzxcx.net/qcxj/mp-wx/carVideo/sequentialPractice@2x.png",
@@ -221,6 +265,72 @@
 			img: "https://ndata.zzxcx.net/qcxj/mp-wx/carVideo/simulationResults@2x.png",
 			text: "模拟成绩",
 			path: "/otherPages/testScores1/index",
+		},
+	]
+	const rightList1 = [
+		{
+			img: "https://ndata.zzxcx.net/qcxj/mp-wx/carVideo/localTopics@2x.png",
+			text: "地方专题",
+			path: "/otherPages/classifyArea/index",
+		},
+		{
+			img: "https://ndata.zzxcx.net/qcxj/mp-wx/carVideo/wrongTopicCollection@2x.png",
+			text: "错题·收藏",
+			path: "/otherPages/collection/index",
+		},
+		{
+			img: "https://ndata.zzxcx.net/qcxj/mp-wx/carVideo/ColorBlindnessTest@2x.png",
+			text: "色盲测试",
+			path: "/otherPages/beforeColorExam/index",
+		},
+		{
+			img: "https://ndata.zzxcx.net/qcxj/mp-wx/carVideo/ThreeExam@2x.png",
+			text: "三力测试",
+			path: "/otherPages/beforeThreeExam/index",
+		},
+	]
+	const rightList4 = [
+		{
+			img: "https://ndata.zzxcx.net/qcxj/mp-wx/carVideo/localTopics@2x.png",
+			text: "地方专题",
+			path: "/otherPages/classifyArea/index",
+		},
+		{
+			img: "https://ndata.zzxcx.net/qcxj/mp-wx/carVideo/wrongTopicCollection@2x.png",
+			text: "错题·收藏",
+			path: "/otherPages/collection/index",
+		},
+		{
+			img: "https://ndata.zzxcx.net/qcxj/mp-wx/carVideo/ColorBlindnessTest@2x.png",
+			text: "色盲测试",
+			path: "/otherPages/beforeColorExam/index",
+		},
+		{
+			img: "https://ndata.zzxcx.net/qcxj/mp-wx/carVideo/ThreeExam@2x.png",
+			text: "三力测试",
+			path: "/otherPages/beforeThreeExam/index",
+		},
+	]
+	const rightList12 = [
+		// {
+		//   img: "https://ndata.zzxcx.net/qcxj/mp-wx/carVideo/localTopics@2x.png",
+		//   text: "地方专题",
+		//   path: "/otherPages/classifyArea/index",
+		// },
+		{
+			img: "https://ndata.zzxcx.net/qcxj/mp-wx/carVideo/wrongTopicCollection@2x.png",
+			text: "错题·收藏",
+			path: "/otherPages/collection/index",
+		},
+		{
+			img: "https://ndata.zzxcx.net/qcxj/mp-wx/carVideo/ColorBlindnessTest@2x.png",
+			text: "色盲测试",
+			path: "/otherPages/beforeColorExam/index",
+		},
+		{
+			img: "https://ndata.zzxcx.net/qcxj/mp-wx/carVideo/ThreeExam@2x.png",
+			text: "注销恢复",
+			path: "/otherPages/beforeRecoveryExam/index",
 		},
 	]
 	const carType = [

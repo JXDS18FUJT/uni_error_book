@@ -2,7 +2,8 @@ import axios from 'axios'
 import mpAdapter from 'axios-miniprogram-adapter'
 axios.defaults.adapter = mpAdapter
 
-const baseUrl = "http://192.168.2.110:9091/"
+const baseUrl = process.env.NODE_ENV === 'development' ? 'https://nbjk1.zzxcx.net/nbjk-admin/' :
+	'https://nbjk.zzxcx.net/nbjk-admin/'
 const service = axios.create({
 	// axios中请求配置有baseURL选项，表示请求URL公共部分
 	// baseURL: process.env.VUE_APP_BASE_API,
@@ -38,11 +39,26 @@ service.interceptors.response.use(
 	res => {
 		// 未设置状态码则默认成功状态
 		//本项目 0是成功的
-		const code = res.data.code || 0;
+		const code = res.data.code || 200;
 		const msg = res.data.msg || ""
 		// 获取错误信息
 		if (code == 200) {
 			return res.data
+		} else if (code == 401) {
+			uni.setStorageSync("token", "")
+			uni.showModal({
+				title: "登录已过期,返回首页",
+				content: "回到首页即可自动登录"
+
+			}).then(res => {
+				if (res.confirm) {
+					uni.reLaunch({
+						url: "/pages/carVideo/index"
+					})
+				}
+			})
+			return res.data
+
 		} else {
 			console.log('code' + code + ':' + msg)
 			uni.showToast({

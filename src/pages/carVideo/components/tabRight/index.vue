@@ -1,31 +1,15 @@
 <template>
-	<view class="center">
-		<view @click="goPath(item, index)" :class="'center-item' + index" v-for="(item, index) in centerList"
-			:key="index">
-			<image class="center-img" :src="item.img"></image>
-
-			<text v-if="index == 0" style="color: #0A6345;" class="center-text">
-				<text v-if="subject == 4">{{
-		          '精选考题' + '\n300题'
-		        }}</text>
-				<text v-else>{{
-		          '精选考题' + '\n500题'
-		        }}</text>
-			</text>
-			<text v-if="index == 1" style="color: #174087;" class="center-text">{{ '模拟考试' +
-		        '\n仿真题目' }}</text>
+	<view class="right">
+		<view v-for="(item, index) in rightList" :key="index" class="right-item">
+			<image @click="goPath(item, index)" :src="item.img"></image>
+			<text>{{ item.text }}</text>
 		</view>
 	</view>
-
 </template>
 
-<script setup lang="ts">
-	import { onLoad } from '@dcloudio/uni-app'
-
-	defineProps({
-		centerList: Array as () => ({ text : string, img : string, path : string }[]),
-		subject: Number
-	})
+<script lang="ts" setup>
+	import { onLoad } from '@dcloudio/uni-app';
+	import utils from '../../../../utils';
 	let query = {
 		title: '',
 		sort: '1'
@@ -39,6 +23,11 @@
 		}
 	})
 
+
+	defineProps({
+		rightList: Array as () => ({ text : string, img : string, path : string }[]),
+		subject: Number
+	})
 	const goPath = (item : { text : string, img : string, path : string }, index : number) => {
 
 		// const qcjk_set = uni.getStorageSync('qcjk_set')
@@ -99,65 +88,43 @@
 
 			return;
 		}
+		if (item.path) {
+			let str = utils.mapToUrlQuery(query);
+			console.log(item.path + "?" + str, "str");
+			uni.navigateTo({
+				url: item.path + "?" + str,
+			});
+		}
 	}
 </script>
 
-<style lang="scss" scoped>
-	.center {
-		display: flex;
-		flex-direction: column;
-		width: 300rpx;
-		margin-top: 60rpx;
+<style lang="scss">
+	.right {
+		width: 190rpx;
+		font-size: 30rpx;
+		padding-top: 25rpx;
 
-		.center-item0 {
-			width: 240rpx;
-			height: 240rpx;
-			background: #8AE6C7;
-			position: relative;
-			color: #fff;
-			text-align: center;
-			border-radius: 50%;
-			margin: 0 auto;
-			margin-bottom: 70rpx;
-			display: flex;
-			flex-wrap: wrap;
-			align-items: center;
-			align-content: center;
-			justify-content: center;
-
-		}
-
-		.center-item1 {
-			width: 240rpx;
-			height: 240rpx;
-			background: #B1CEFF;
-			position: relative;
-			color: #fff;
-			text-align: center;
-			border-radius: 50%;
-			margin: 0 auto;
-			margin-bottom: 70rpx;
-			display: flex;
-			flex-wrap: wrap;
-			align-items: center;
-			align-content: center;
-
-			justify-content: center;
-
-		}
-
-		.center-img {
-			width: 72rpx;
-			height: 84rpx;
-		}
-
-		.center-text {
-
-
+		.right-item {
 			width: 100%;
-			display: block;
-			font-size: 28rpx;
+			display: flex;
+			justify-content: flex-start;
+			flex-direction: column;
+			align-content: center;
+			align-items: center;
+
 			text-align: center;
+			height: 160rpx;
+
+			image {
+				width: 100rpx;
+				height: 100rpx;
+			}
+		}
+
+		.separate {
+			width: 100%;
+			height: 40rpx;
+			background: gray;
 		}
 	}
 </style>

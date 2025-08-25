@@ -59,6 +59,15 @@
 				"navigationStyle": "custom"
 
 			}
+		},
+		{
+			"path": "pages/teacherVideo/index",
+			"style": {
+				"navigationBarTitleText": "教学视频",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+		
+			}
 		}
 	],
 	"tabBar": {
@@ -111,6 +120,11 @@
 		},{
 			"name": "首页",
 			"path": "pages/carVideo/index",
+			"query": ""
+
+		},{
+			"name": "教育视频",
+			"path": "pages/teacherVideo/index",
 			"query": ""
 
 		}]
