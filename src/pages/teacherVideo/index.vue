@@ -10,7 +10,7 @@
 				<navigator url="/otherPages/myExamRoadVideo/index">
 					<view class="right">
 						<text>查找我的考场</text>
-						<!-- <van-icon color="#3AC770" name="arrow" /> -->
+						<text color="#3AC770" name="arrow" />
 					</view>
 				</navigator>
 			</view>
@@ -157,6 +157,7 @@
 			padding-left: 30rpx;
 			padding-right: 30rpx;
 			padding-top: 36rpx;
+			box-sizing: border-box;
 
 			.left {
 				font-size: 36rpx;
@@ -201,7 +202,7 @@
 			padding-right: 30rpx;
 			justify-content: space-between;
 			margin-top: 20rpx;
-
+			box-sizing: border-box;
 			.left {
 				width: 408rpx;
 			}

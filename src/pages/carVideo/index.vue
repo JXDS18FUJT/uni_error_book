@@ -102,11 +102,14 @@
 				</view>
 				<view id="tab-container1"
 					style="padding-top: 16rpx;display: inline-block; white-space: nowrap;width: 100%;">
-					<!-- <teacherVideo v-if="active == 1"></teacherVideo>
-					<view style="width: 100%;" v-else></view> -->
 					<view class="tab-container">
-						<text style="color: #7fff50;">{{active}}</text>
+						<teacherVideo v-if="active == 1"></teacherVideo>
+						<view style="width: 100%;" v-else></view>
 					</view>
+
+					<!-- <view class="tab-container">
+						<text style="color: #7fff50;">{{active}}</text>
+					</view> -->
 
 				</view>
 				<view id="tab-container2" style="display: inline-block; white-space: nowrap;width: 100%;">
@@ -148,7 +151,7 @@
 	import tabRight from './components/tabRight/index.vue';
 	import tabCenter from './components/tabCenter/index.vue';
 	import userInfoHead from './components/userInfoHead/userInfoHead.vue';
-
+	import teacherVideo from './../teacherVideo/index.vue'
 	const msg = ref('hello world')
 	const systemInfo = uni.getSystemInfoSync()
 

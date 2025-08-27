@@ -51,7 +51,7 @@ service.interceptors.response.use(
 				content: "回到首页即可自动登录"
 
 			}).then(res => {
-				if (res.confirm) {
+				if (res.confirm) { 
 					uni.reLaunch({
 						url: "/pages/carVideo/index"
 					})
