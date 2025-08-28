@@ -140,7 +140,7 @@
 				</view>
 			</scroll-view>
 		</view>
-
+		<view style="height: 1px; background: #f2f3f5"></view>
 	</view>
 
 </template>
