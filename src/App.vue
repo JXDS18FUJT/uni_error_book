@@ -35,8 +35,5 @@
 <style>
 	/*每个页面公共css */
 	
-	.iPhoneX {
-	  padding-bottom: constant(safe-area-inset-bottom);
-	  padding-bottom: env(safe-area-inset-bottom);
-	}
+
 </style>

@@ -66,43 +66,69 @@
 				"navigationBarTitleText": "教学视频",
 				"enablePullDownRefresh": false,
 				"navigationStyle": "custom"
-		
+
 			}
 		}
 	],
+	"subPackages": [{
+		"root": "otherPages",
+		"pages": [{
+				"path": "classifyOrder/index",
+				"style": {
+					"navigationBarTitleText": "顺序练习",
+					"enablePullDownRefresh": false
+				}
+			},
+			{
+				"path": "classifyKind/index",
+				"style": {
+					"navigationBarTitleText": "分类练习",
+					"enablePullDownRefresh": false
+				}
+			},
+			{
+				"path": "classifyArea/index",
+				"style": {
+					"navigationBarTitleText": "区域练习",
+					"enablePullDownRefresh": false
+				}
+			}
+		]
+	}],
 	"tabBar": {
-		"custom": false,
+		"color": "#7A7E83",
+		"selectedColor": "#498EF5",
+		"borderStyle": "white",
 		"backgroundColor": "#ffffff",
-		"borderStyle": "black",
-		"color": "#7A7A7A",
-		"selectedColor": "#498EF5FF",
 		"list": [{
-				"pagePath": "pages/home/home",
-				"text": "推荐",
-				"iconPath": "/static/image/home.png",
-				"selectedIconPath": "/static/image/home_active.png"
-
+				"pagePath": "pages/carVideo/index",
+				"iconPath": "static/imgs/car.png",
+				"selectedIconPath": "static/imgs/car-active.png",
+				"text": "驾考"
 			},
 			{
-				"pagePath": "pages/shop/shop",
-				"text": "闲逛",
-				"iconPath": "/static/image/shop.png",
-				"selectedIconPath": "/static/image/shop_active.png"
-
+				"pagePath": "pages/teacherVideo/index",
+				"iconPath": "static/imgs/video.png",
+				"selectedIconPath": "static/imgs/video-active.png",
+				"text": "科二科三"
 			},
 			{
-				"pagePath": "pages/know/know",
-				"text": "艾家",
-				"iconPath": "/static/image/know.png",
-				"selectedIconPath": "/static/image/know_active.png"
-
+				"pagePath": "pages/course/index",
+				"iconPath": "static/imgs/course.png",
+				"selectedIconPath": "static/imgs/course-active.png",
+				"text": "课程"
 			},
 			{
-				"pagePath": "pages/user/user",
-				"text": "我的",
-				"iconPath": "/static/image/user.png",
-				"selectedIconPath": "/static/image/user_active.png"
-
+				"pagePath": "pages/user/index",
+				"iconPath": "static/imgs/user.png",
+				"selectedIconPath": "static/imgs/user-active.png",
+				"text": "我的"
+			},
+			{
+				"pagePath": "pages/buyExamTool/index",
+				"iconPath": "static/imgs/tool.png",
+				"selectedIconPath": "static/imgs/tool-active.png",
+				"text": "驾考神器"
 			}
 		]
 	},
@@ -117,12 +143,12 @@
 			"path": "pages/loginByWx/loginByWx",
 			"query": ""
 
-		},{
+		}, {
 			"name": "首页",
 			"path": "pages/carVideo/index",
 			"query": ""
 
-		},{
+		}, {
 			"name": "教育视频",
 			"path": "pages/teacherVideo/index",
 			"query": ""

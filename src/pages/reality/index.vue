@@ -167,6 +167,7 @@
 	const videoTimeUpdate = (e) => {
 
 	}
+	
 </script>
 
 <style lang="scss">
