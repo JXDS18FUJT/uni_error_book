@@ -141,6 +141,34 @@
 			</scroll-view>
 		</view>
 		<view style="height: 1px; background: #f2f3f5"></view>
+		<view class="extra">
+			<navigator
+				:url="'/otherPages/selectRulePaper/index?model=' + tabQuery.model + '&subject=' + tabQuery.subject + '&cert=' + tabQuery.cert"
+				class="">
+				<image style="width: 84rpx" mode="widthFix" src="/static/icon/home_bottom_icon1@2x.png" />
+				<view>考前秘卷</view>
+			</navigator>
+			<navigator url="/otherPages/selectRulePaper/index" class="">
+				<image style="width: 84rpx" mode="widthFix" src="/static/icon/home_bottom_icon2@2x.png" />
+				<view>新规秘卷</view>
+			</navigator>
+			<navigator url="/otherPages/sellerCenter/index" class="">
+				<image style="width: 84rpx" mode="widthFix" src="/static/icon/home_bottom_icon3@2x.png" />
+				<view>分销中心</view>
+			</navigator>
+			<navigator url="/otherPages/trafficSign/index" class="">
+				<image style="width: 84rpx" mode="widthFix" src="/static/icon/home_bottom_icon4@2x.png" />
+				<view> 图标技巧</view>
+			</navigator>
+			<!-- <navigator url="" class="">
+		        <img style="width: 84rpx;" mode="widthFix" src="/static/icon/extra_icon2@2x.png">
+		        <view>学法减分</view>
+		      </navigator> -->
+			<!-- <navigator v-if="vipPackage.childVisible==1" url="/otherPages/sellerCenter/index">
+		        <img style="width: 84rpx;" mode="widthFix" src="/static/icon/extra_icon3@2x.png">
+		        <view>分销中心</view>
+		      </navigator> -->
+		</view>
 	</view>
 
 </template>
@@ -490,6 +518,24 @@
 
 		.msg {
 			font-size: 36rpx;
+		}
+
+		.extra {
+			width: 100%;
+			height: 180rpx;
+			background-color: #fff;
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+			align-content: center;
+			text-align: center;
+			font-size: 26rpx;
+		}
+
+		.splitLine {
+			width: 750rpx;
+			height: 20rpx;
+			background: #f2f3f5;
 		}
 
 		.carType {
