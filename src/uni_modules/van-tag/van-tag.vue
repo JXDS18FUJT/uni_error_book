@@ -14,7 +14,7 @@
 <script>
 import { VantComponent } from '../common/component'
 import VanIcon from '../van-icon/van-icon'
-const utils = require('../wxs/utils')
+import utils from '../wxs/utils'
 export default {
   components: {
     VanIcon
