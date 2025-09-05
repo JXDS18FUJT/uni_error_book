@@ -47,12 +47,12 @@ export default {
       });
     },
     getClassData() {
-      api.exam.studentQuestion2InfoGetQuestionColumn({
-        subject: `${(this.query.oldSubject||'k'+this.query.subject)+'_3'}`,
-        model: this.query.model
-      }).then(res => {
-        this.classData = res.data;
-      })
+      // api.exam.studentQuestion2InfoGetQuestionColumn({
+      //   subject: `${(this.query.oldSubject||'k'+this.query.subject)+'_3'}`,
+      //   model: this.query.model
+      // }).then(res => {
+      //   this.classData = res.data;
+      // })
       // api.exam
       //   .studentQuestionInfoSelectFlQuestionInfo(this.query)
       //   .then((res) => {

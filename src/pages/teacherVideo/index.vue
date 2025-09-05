@@ -229,16 +229,22 @@
 	}
 
 	.subject {
-		padding: 0 30rpx;
+		padding: 0 0rpx;
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: space-between;
+		margin: 0 auto;
 		margin-top: 40rpx;
+		width: 690rpx;
+		
+		
+		
 
 		.list {
 			position: relative;
 			margin-bottom: 15rpx;
+		
 
 			.subject-bg {
 				width: 334rpx;

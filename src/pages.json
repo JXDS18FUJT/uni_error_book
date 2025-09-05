@@ -5,7 +5,8 @@
 		"custom": {
 			// uni-ui 规则如下配置
 			"^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue",
-			"van-(.*)": "@/uni_modules/van-$1/van-$1.vue"
+			"van-(.*)": "@/uni_modules/van-$1/van-$1.vue",
+			"^m-(.*)":"@/components/m-$1/m-$1"
 		
 		}
 	},

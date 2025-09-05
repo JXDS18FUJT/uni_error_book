@@ -509,7 +509,7 @@
 	})
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.bg {
 		display: flex;
 		flex-wrap: wrap;
@@ -684,7 +684,7 @@
 				padding: 0 30rpx;
 				min-height: 30rpx;
 				color: #333;
-				flex: 0;
+				
 			}
 		}
 	}
