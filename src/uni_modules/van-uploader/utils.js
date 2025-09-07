@@ -1,5 +1,12 @@
-import { pickExclude, isPC, isWxWork } from '../common/utils';
-import { isImageUrl, isVideoUrl } from '../common/validator';
+import {
+  pickExclude,
+  isPC,
+  isWxWork
+} from '../common/utils';
+import {
+  isImageUrl,
+  isVideoUrl
+} from '../common/validator';
 
 // export interface File {
 //   url: string; // 上传临时地址
@@ -58,14 +65,12 @@ function formatImage(
 function formatVideo(
   res
 ) {
-  return [
-    {
-      ...pickExclude(res, ['tempFilePath', 'thumbTempFilePath', 'errMsg']),
-      type: 'video',
-      url: res.tempFilePath,
-      thumb: res.thumbTempFilePath,
-    },
-  ];
+  return [{
+    ...pickExclude(res, ['tempFilePath', 'thumbTempFilePath', 'errMsg']),
+    type: 'video',
+    url: res.tempFilePath,
+    thumb: res.thumbTempFilePath,
+  }, ];
 }
 
 function formatMedia(res) {
@@ -73,8 +78,7 @@ function formatMedia(res) {
     ...pickExclude(item, ['fileType', 'thumbTempFilePath', 'tempFilePath']),
     type: item.fileType,
     url: item.tempFilePath,
-    thumb:
-      item.fileType === 'video' ? item.thumbTempFilePath : item.tempFilePath,
+    thumb: item.fileType === 'video' ? item.thumbTempFilePath : item.tempFilePath,
   }));
 }
 
@@ -149,10 +153,20 @@ export function chooseFile({
         uni.chooseMessageFile({
           count: multiple ? maxCount : 1,
           type: accept,
-          ...(extension ? { extension } : {}),
+          ...(extension ? {
+            extension
+          } : {}),
           success: (res) => resolve(formatFile(res)),
           fail: reject,
         });
+
+        // uni.chooseMessageFile({
+        //   count: multiple ? maxCount : 1,
+        //   type: accept,
+        //   ...(extension ? { extension } : {}),
+        //   success: (res) => resolve(formatFile(res)),
+        //   fail: reject,
+        // });
         break;
     }
   });

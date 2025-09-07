@@ -190,7 +190,8 @@
             maxCount,
             multiple,
             lists,
-            disabled
+            disabled,
+            accept
           } = this;
           if (disabled) return;
 
@@ -198,8 +199,10 @@
               count: 1,
               multiple,
               maxCount: maxCount - lists.length,
+              accept
             })
             .then((res) => {
+              console.log(res)
               this.onBeforeRead(multiple ? res : res[0]);
             })
             .catch((error) => {
@@ -214,7 +217,7 @@
             useBeforeRead
           } = this;
           let res = true;
-
+          console.log(beforeRead, useBeforeRead)
           if (typeof beforeRead === 'function') {
             res = beforeRead(file, this.getDetail());
           }
@@ -232,12 +235,14 @@
           }
 
           if (!res) {
+
             return;
           }
 
           if (isPromise(res)) {
             res.then((data) => this.onAfterRead(data || file));
           } else {
+
             this.onAfterRead(file);
           }
         },
@@ -260,13 +265,15 @@
           }
 
           if (typeof afterRead === 'function') {
+
             afterRead(file, this.getDetail());
           }
-
+          console.log(file, this.getDetail())
           this.$emit('after-read', {
             file,
             ...this.getDetail()
           });
+          console.log(afterRead)
         },
 
         deleteItem(event) {

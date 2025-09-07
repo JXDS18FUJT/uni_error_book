@@ -1,6 +1,6 @@
 <template>
   <van-cell :size="size" :icon="leftIcon" :center="center" :border="border" :is-link="isLink" :required="required"
-    :clickable="clickable" :title-style="{ marginRight: '12px' }" :title="label" :arrow-direction="arrowDirection"
+    :clickable="clickable" :title-style="{ marginRight: '12px' }" :arrow-direction="arrowDirection" @click="onClick"
     class="custom-class van-field">
 
     <!-- 左侧图标 -->
@@ -10,14 +10,17 @@
 
     <!-- 标题部分 -->
 
-    <!--  <template v-if="label">
-        <label :for="name" :class="fieldLabel">
-          {{ label }}
-        </label>
-      </template>
-      <template v-else>
+    <template v-if="label">
+      <label :for="name" :class="fieldLabel" slot="title">
+        {{ label }}
+      </label>
+    </template>
+    <template v-else>
+      <view slot="title">
         <slot name="label" />
-      </template> -->
+      </view>
+
+    </template>
 
 
     <!--    <template v-if="label" v-slot:title>
@@ -38,24 +41,24 @@
       <!-- 动态加载 Textarea 或 Input 组件 -->
       <!--  <textarea-component v-if="type === 'textarea'" />
     <input-component v-else /> -->
-      <view>
-        <textarea v-if="type === 'textarea'" :class="fieldControlTextarea" :value="innerValue" :focus="focus"
-          :auto-focus="autoFocus" :disabled="disabled || readonly" :maxlength="maxlength" :placeholder="placeholder"
-          :placeholder-style="placeholderStyle" :placeholder-class="fieldPaceholder" :cursor-spacing="cursorSpacing"
-          :show-confirm-bar="showConfirmBar" :hold-keyboard="holdKeyboard" :auto-height="autosize" :fixed="fixed"
-          @input="onInput" @focus="onFocus" @blur="onBlur" @linechange="onLineChange"
-          @keyboardheightchange="onKeyboardHeightChange" />
-      </view>
-      <view>
-        <input v-if="type !== 'textarea'" :class="fieldControlInput" :type="type" :focus="focus" :cursor="cursor" :value="innerValue"
-          :auto-focus="autoFocus" :disabled="disabled || readonly" :maxlength="maxlength" :placeholder="placeholder"
-          :placeholder-style="placeholderStyle" :placeholder-class="fieldPaceholder" :confirm-type="confirmType"
-          :confirm-hold="confirmHold" :hold-keyboard="holdKeyboard" :cursor-spacing="cursorSpacing"
-          :adjust-position="adjustPosition" :selection-end="selectionEnd" :selection-start="selectionStart"
-          :always-embed="alwaysEmbed" :password="password || type === 'password'" @input="onInput"
-          @blur="onBlur" @focus="onFocus" @confirm="onConfirm" @keyboardheightchange="onKeyboardHeightChange"
-          @nicknamereview="onBindNicknameReview" />
-      </view>
+
+      <textarea  v-if="type === 'textarea'" :class="fieldControlTextarea" :value="innerValue" :focus="focus"
+        :auto-focus="autoFocus" :disabled="disabled || readonly" :maxlength="maxlength" :placeholder="placeholder"
+        :placeholder-style="placeholderStyle" :placeholder-class="fieldPaceholder" :cursor-spacing="cursorSpacing"
+        :show-confirm-bar="showConfirmBar" :hold-keyboard="holdKeyboard" :auto-height="autosize" :fixed="fixed"
+        @input="onInput" @focus="onFocus"  @blur="onBlur" @linechange="onLineChange"
+        @keyboardheightchange="onKeyboardHeightChange"  />
+
+
+      <input v-if="type !== 'textarea'"   :class="fieldControlInput" :type="type" :focus="focus" :cursor="cursor"
+        :value="innerValue" :auto-focus="autoFocus" :disabled="disabled || readonly" :maxlength="maxlength"
+        :placeholder="placeholder" :placeholder-style="placeholderStyle" :placeholder-class="fieldPaceholder"
+        :confirm-type="confirmType" :confirm-hold="confirmHold" :hold-keyboard="holdKeyboard"
+        :cursor-spacing="cursorSpacing" :adjust-position="adjustPosition" :selection-end="selectionEnd"
+        :selection-start="selectionStart" :always-embed="alwaysEmbed" :password="password || type === 'password'"
+        @input="onInput" @blur="onBlur" @focus="onFocus" @confirm="onConfirm"
+        @keyboardheightchange="onKeyboardHeightChange" @nicknamereview="onBindNicknameReview"  />
+
 
       <!-- 清除按钮 -->
       <van-icon v-if="showClear" size="18px" :name="clearIcon" class="van-field__clear-root van-field__icon-root"
@@ -126,7 +129,10 @@
       autosize: null,
       required: Boolean,
       iconClass: String,
-      clickable: Boolean,
+      clickable: {
+        type:Boolean,
+        default:true
+      },
       inputAlign: String,
       customStyle: String,
       errorMessage: String,
@@ -138,7 +144,7 @@
       },
       readonly: {
         type: Boolean,
-        observer: 'setShowClear',
+          default: false,
       },
       clearable: {
         type: Boolean,
@@ -297,6 +303,10 @@
         this.focused = false
         this.setShowClear()
         this.$emit('blur', event)
+      },
+      onClick(e) {
+        console.log(e)
+        this.$emit('click')
       },
       onClickIcon() {
         this.$emit('click-icon')

@@ -59,7 +59,6 @@ import { openType } from '../mixins/open-type'
 import VanIcon from '../van-icon/van-icon'
 import VanLoading from '../van-loading/van-loading'
 import utils from '../wxs/utils'
-
 export default {
   // 组件必须这样子引入，不能放在 VantComponent 里面
   components: {

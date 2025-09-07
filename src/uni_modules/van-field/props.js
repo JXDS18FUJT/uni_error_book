@@ -3,7 +3,10 @@ export const commonProps = {
   placeholder: String,
   placeholderStyle: String,
   placeholderClass: String,
-  disabled: Boolean,
+  disabled: {
+    type:Boolean,
+    default:false
+  },
   maxlength: {
     type: Number,
     default: -1,

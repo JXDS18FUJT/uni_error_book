@@ -5,7 +5,7 @@
     :hover-class="selfHoverClass"
     hover-stay-time="70"
     :style="customStyle"
-    @tap="onClick"
+    @click="onClick"
   >
     <van-icon
       v-if="icon"
@@ -53,7 +53,6 @@ import { VantComponent } from '../common/component'
 import { link } from '../mixins/link'
 import VanIcon from '../van-icon/van-icon'
 import utils from '../wxs/utils'
-console.log(utils)
 export default {
   components: {
     VanIcon

@@ -103,7 +103,6 @@
 		width: 190rpx;
 		font-size: 30rpx;
 		padding-top: 25rpx;
-
 		.left-item {
 			width: 100%;
 			display: flex;
