@@ -209,7 +209,7 @@
         },
 
         onChange(event) {
-          console.log(event)
+          // console.log(event)
           if (this.simple) {
             this.$emit('change', {
               picker: this,

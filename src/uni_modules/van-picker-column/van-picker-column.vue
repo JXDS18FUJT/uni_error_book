@@ -15,7 +15,7 @@
           option && option.disabled?'van-picker-column__item--disabled':'',
           index === currentIndex?'van-picker-column__item--selected':'',
           index === currentIndex ? 'active-class' : ''
-        ]" @click="onClickItem">
+        ]" @click="onClickItem(index)">
         {{ optionText(option, valueKey) }}
       </view>
     </view>
@@ -123,6 +123,14 @@
     },
 
     methods: {
+      setOptions(data){
+        const {options} = data
+        this.options = options
+        return new Promise((resolve,reject)=>{
+          resolve()
+        })
+
+      },
       optionText(option, valueKey) {
 
         return isObj(option) && option[valueKey] != null ? option[valueKey] : option;
@@ -158,6 +166,7 @@
             0,
             this.getCount() - 1
           );
+          console.log('TouchEnd',index)
           this.setIndex(index, true);
         }
       },
@@ -191,6 +200,7 @@
       },
 
       setIndex(index, userAction) {
+        console.log(index, userAction)
         index = this.adjustIndex(index) || 0;
         this.offset = -index * this.itemHeight;
 

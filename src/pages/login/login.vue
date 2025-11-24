@@ -1,60 +1,139 @@
 <template>
 	<view>
-		<view class="pr-16 pl-16">
+		<view class="pr-16 pl-16 bg-gray">
 			<view class="text-center text-48 pb-8 pt-8">系统</view>
-			<uni-forms ref="form" :modelValue="formData">
-				<uni-forms-item :rules="[{'required': true,errorMessage: '用户名必填'}]" name="username" label="用户名">
-					<uni-easyinput v-model="formData.username" type="text" placeholder="请输入用户名" />
-				</uni-forms-item>
-				<uni-forms-item :rules="[{'required': true,errorMessage: '密码必填'}]" name="password" label="密码">
-					<uni-easyinput v-model="formData.password" type="text" placeholder="请输入密码" />
-				</uni-forms-item>
-				<button type="primary" class="button" @click="submit">登录</button>
-				<button type="primary" class="button" @click="loginByWx">微信登录</button>
-			</uni-forms>
-		</view>
 
+			 <van-tabs @click="onClick">
+			   <van-tab
+			     v-for="(item, index) in tabs2"
+			     :key="index"
+			     :title="'标签 ' + item"
+			   >
+			     <view class="content">
+			       {{ '内容' + item }}
+			     </view>
+			   </van-tab>
+			 </van-tabs>
+			
+		</view>
 	</view>
+
+
 
 </template>
 <script lang="ts">
 	import api from '@/api'
-
+  const options = [{
+    text: "浙江省",
+    value: "330000",
+    children: [{
+      text: "杭州市",
+      value: "330100",
+      children: [{
+        text: "上城区",
+        value: "330102"
+      }, {
+        text: "下城区",
+        value: "330103"
+      }, {
+        text: "江干区",
+        value: "330104"
+      }]
+    }, {
+      text: "宁波市",
+      value: "330200",
+      children: [{
+        text: "海曙区",
+        value: "330203"
+      }, {
+        text: "江北区",
+        value: "330205"
+      }, {
+        text: "北仑区",
+        value: "330206"
+      }]
+    }, {
+      text: "温州市",
+      value: "330300",
+      children: [{
+        text: "鹿城区",
+        value: "330302"
+      }, {
+        text: "龙湾区",
+        value: "330303"
+      }, {
+        text: "瓯海区",
+        value: "330304"
+      }]
+    }]
+  }, {
+    text: "江苏省",
+    value: "320000",
+    children: [{
+      text: "南京市",
+      value: "320100",
+      children: [{
+        text: "玄武区",
+        value: "320102"
+      }, {
+        text: "秦淮区",
+        value: "320104"
+      }, {
+        text: "建邺区",
+        value: "320105"
+      }]
+    }, {
+      text: "无锡市",
+      value: "320200",
+      children: [{
+        text: "锡山区",
+        value: "320205"
+      }, {
+        text: "惠山区",
+        value: "320206"
+      }, {
+        text: "滨湖区",
+        value: "320211"
+      }]
+    }, {
+      text: "徐州市",
+      value: "320300",
+      children: [{
+        text: "鼓楼区",
+        value: "320302"
+      }, {
+        text: "云龙区",
+        value: "320303"
+      }, {
+        text: "贾汪区",
+        value: "320305"
+      }]
+    }]
+  }]
 	export default {
 		data() {
 			return {
+				 tabs2: [0, 2],
+				options,
+				value:2,
+				formatter: undefined,
+				confirmText: undefined,
+				confirmDisabledText: undefined,
+				firstDayOfWeek: 0,
+				showCalendar: true,
 				formData: {
 					username: 'vzjtu609',
 					password: ''
 				},
-				options: [{
-					icon: 'headphones',
-					text: '客服'
-				}, {
-					icon: 'shop',
-					text: '店铺',
-					info: 1,
-					infoBackgroundColor: '#007aff',
-					infoColor: "red"
-				}, {
-					icon: 'cart',
-					text: '购物车',
-					info: 2
-				}],
-				buttonGroup: [{
-					text: '加入购物车',
-					backgroundColor: '#ff0000',
-					color: '#fff'
-				},
-				{
-					text: '立即购买',
-					backgroundColor: '#ffa200',
-					color: '#fff'
-				}
-				]
+		
+				position: "bottom",
+				round: true
 			}
 		},
 		methods: {
+			onClick(){
+				
+			},
 			submit() {
 				// 在 onLoad 生命周期中，formData添加了一个 id 字段 ，此时这个字段是不参数校验的，所以结果中不返回
 				// 在 validate(['id']) 方法中，指定第一个参数 ，即可返回id字段
@@ -116,20 +195,20 @@
 			},
 			loginByWx() {
 				uni.login({
-					provider:'weixin',
+					provider: 'weixin',
 					"onlyAuthorize": true,
 					success(event) {
-						const {code} = event
+						const { code } = event
 						console.log(event)
 					},
 					fail: function (err) {
 						console.log(err)
-					        // 登录授权失败
-					        // err.code是错误码
-					    }
+						// 登录授权失败
+						// err.code是错误码
+					}
 				})
-			
-				
+
+
 			}
 
 		}

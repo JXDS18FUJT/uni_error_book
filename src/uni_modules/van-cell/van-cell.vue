@@ -5,7 +5,7 @@
     :hover-class="selfHoverClass"
     hover-stay-time="70"
     :style="customStyle"
-    @click="onClick"
+    @tap="onClick"
   >
     <van-icon
       v-if="icon"

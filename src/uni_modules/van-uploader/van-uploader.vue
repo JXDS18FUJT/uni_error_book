@@ -2,17 +2,18 @@
   <div class="van-uploader">
     <div class="van-uploader__wrapper">
       <!-- 预览样式 -->
-      <div v-if="previewImage" v-for="(item, index) in lists" :key="index" class="van-uploader__preview"
-        @click="onClickPreview(index)">
+      <div v-if="previewImage" v-for="(item, index) in lists" :key="index" :data-index="index" class="van-uploader__preview"
+        @click="onClickPreview">
         <!-- 图片预览 -->
         <img v-if="item.isImage" class="van-uploader__preview-image" :src="item.thumb || item.url"
           :alt="item.name || ('图片' + index)" style="sizeStyle(previewSize)" :data-index="index" :mode="imageFit"
           @click.stop="onPreviewImage" />
 
         <!-- 视频预览 -->
-        <video v-else-if="item.isVideo" class="van-uploader__preview-image" :src="item.url" :poster="item.thumb"
+        <video v-else-if="item.isVideo" :data-index="index" enable-danmu danmu-btn controls class="van-uploader__preview-image" :src="item.url" :poster="item.thumb"
           :title="item.name || ('视频' + index)" :autoplay="item.autoplay" style="sizeStyle(previewSize)"
-          :object-fit="videoFit" :referrer-policy="referrerPolicy" @click.stop="onPreviewVideo"></video>
+          :object-fit="videoFit"  :referrer-policy="referrerPolicy"
+          @click.stop="onPreviewVideo"></video>
 
         <!-- 其他文件预览 -->
         <div v-else class="van-uploader__file" style="sizeStyle(previewSize)" @click.stop="onPreviewFile(index)">
@@ -49,8 +50,24 @@
           <van-icon :name="uploadIcon" class="van-uploader__upload-icon" />
           <text v-if="uploadText" class="van-uploader__upload-text">{{ uploadText }}</text>
         </view>
+
       </template>
     </div>
+    <van-popup @close="()=>{previewMediaShow = false}" customStyle="background-color: transparent"
+      :show="previewMediaShow">
+      <view style="height: 50vh;display: flex;align-items: center;">
+        <swiper style="width: 100vw;height:100%" :current="previewMediaIndex">
+          <swiper-item style="width: 100vw;height:100%" v-for="(item,index) in previewMediaList" :key="index">
+            <view style="display: flex;justify-content: center;align-items: center;height:100%">
+              <image style="overflow: visible;height: 100%;" mode="heightFix" :src="item.url" v-if="item.isImage">
+              </image>
+              <video autoplay object-fit="contain" :src="item.url" style="width:100vw;height: 100%;" v-if="item.isVideo"></video>
+            </view>
+
+          </swiper-item>
+        </swiper>
+      </view>
+    </van-popup>
   </div>
 </template>
 
@@ -99,7 +116,7 @@
         },
         fileList: {
           type: Array,
-          default: [],
+          default: ()=>[],
           observer: 'formatFileList',
         },
         maxSize: {
@@ -147,7 +164,10 @@
       data() {
         return {
           lists: [],
+          previewMediaList: [],
+          previewMediaIndex: 0,
           isInCount: true,
+          previewMediaShow: false
         }
 
       },
@@ -155,6 +175,20 @@
         fileList: {
           handler(newVal, oldVal) {
             this.formatFileList()
+
+
+
+          },
+          immediate: true
+        },
+        lists: {
+          handler(newVal, oldVal) {
+            console.log('lists')
+            this.previewMediaList = newVal.filter(item => {
+              //排除无法预览的非media文件
+              return isImageFile(item) || isVideoFile(item)
+            })
+
           },
           immediate: true
         }
@@ -174,8 +208,6 @@
           }));
           this.lists = lists
           this.isInCount = lists.length < maxCount
-          console.log('isInCount', this.isInCount)
-          // this.setData({ lists, isInCount: lists.length < maxCount });
         },
 
         getDetail(index) {
@@ -202,11 +234,11 @@
               accept
             })
             .then((res) => {
-              console.log(res)
+
               this.onBeforeRead(multiple ? res : res[0]);
             })
             .catch((error) => {
-              console.log(error)
+
               this.$emit('error', error);
             });
         },
@@ -225,7 +257,7 @@
           if (useBeforeRead) {
             res = new Promise((resolve, reject) => {
               this.$emit('before-read', {
-                file,
+                ...file,
                 ...this.getDetail(),
                 callback: (ok) => {
                   ok ? resolve() : reject();
@@ -258,7 +290,7 @@
 
           if (oversize) {
             this.$emit('oversize', {
-              file,
+              ...file,
               ...this.getDetail()
             });
             return;
@@ -270,21 +302,21 @@
           }
           console.log(file, this.getDetail())
           this.$emit('after-read', {
-            file,
+            ...file,
             ...this.getDetail()
           });
           console.log(afterRead)
         },
 
         deleteItem(event) {
-          console.log(event)
+
           const {
             index
           } = event.currentTarget.dataset;
 
           this.$emit('delete', {
             ...this.getDetail(index),
-            file: this.fileList[index],
+            ...this.fileList[index],
           });
         },
 
@@ -299,7 +331,13 @@
             showmenu
           } = this;
           const item = lists[index];
-          console.log(lists.filter((item) => isImageFile(item)).map((item) => item.url))
+          this.previewMediaIndex = Number(index)
+          //#ifdef H5 || APP-PLUS
+          this.previewMediaShow = true
+          //#endif
+
+          //#ifdef MP
+
           uni.previewImage({
             urls: lists.filter((item) => isImageFile(item)).map((item) => item.url),
             current: item.url,
@@ -311,6 +349,7 @@
               });
             },
           });
+          //#endif
         },
 
         onPreviewVideo(event) {
@@ -340,7 +379,14 @@
 
             return sum;
           }, 0);
+          this.previewMediaIndex = Number(index)
 
+
+          //#ifdef H5 || APP-PLUS
+          this.previewMediaShow = true
+          //#endif
+
+          //#ifdef MP
           uni.previewMedia({
             sources,
             current,
@@ -351,6 +397,8 @@
               });
             },
           });
+          //#endif
+
         },
 
         onPreviewFile(event) {
@@ -384,5 +432,9 @@
 </script>
 
 <style lang="less">
+  .g {
+    background-color: transparent
+  }
+
   @import './index.less';
 </style>

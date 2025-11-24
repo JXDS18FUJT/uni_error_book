@@ -50,9 +50,9 @@
       <scroll-view class="van-calendar__body" scroll-y :scroll-into-view="scrollIntoView1">
         <view style="display: flex;overflow: auto;" v-for="(item, index) in getMonths(minDate,maxDate)" :key="index"
           :id="'month' + index">
-          <vmonth class="month" :date="item" :type="type" :color="color" :min-date="minDate" :max-date="maxDate"
-            :show-mark="showMark" :formatter="formatter" :row-height="rowHeight" :current-date="currentDate"
-            :show-subtitle="showSubtitle" :allow-same-day="allowSameDay"
+          <vmonth ref="month" class="month" :date="item" :type="type" :color="color" :min-date="minDate"
+            :max-date="maxDate" :show-mark="showMark" :formatter="formatter" :row-height="rowHeight"
+            :current-date="currentDate" :show-subtitle="showSubtitle" :allow-same-day="allowSameDay"
             :show-month-title="index !== 0 || !showSubtitle" :first-day-of-week="firstDayOfWeek" @click="onClickDay" />
         </view>
 
@@ -153,8 +153,8 @@
           value: true,
         },
         defaultDate: {
-          type: [Date,Number],
-          default:+new Date()
+          type: [Date, Number],
+          default: +new Date()
 
         },
         allowSameDay: Boolean,
@@ -164,11 +164,11 @@
 
         },
         minDate: {
-          type: [Date,Number],
+          type: [Date, Number],
           default: initialMinDate,
         },
         maxDate: {
-          type: [Date,Number],
+          type: [Date, Number],
           default: initialMaxDate,
         },
         position: {
@@ -247,10 +247,22 @@
       // },
 
       watch: {
+        type() {
+          this.months = getMonths(this.minDate, this.maxDate)
+
+          this.currentDate = this.getInitialDate(this.defaultDate)
+          // this.initRect();
+        },
         minDate() {
+          this.months = getMonths(this.minDate, this.maxDate)
+
+          this.currentDate = this.getInitialDate(this.defaultDate)
           this.initRect();
         },
         maxDate() {
+          this.months = getMonths(this.minDate, this.maxDate)
+
+          this.currentDate = this.getInitialDate(this.defaultDate)
           this.initRect();
         },
       },
@@ -259,8 +271,9 @@
         this.months = getMonths(this.minDate, this.maxDate)
 
         this.currentDate = this.getInitialDate(this.defaultDate)
+
         // this.currentDate = new Date()
-        // console.log(this.currentDate)
+        console.log(this.currentDate, this.type,this.defaultDate)
       },
 
       mounted() {
@@ -366,6 +379,7 @@
           if (!defaultDate || Array.isArray(defaultDate)) {
             defaultDate = now;
           }
+          console.log('limitDateRange')
           return this.limitDateRange(defaultDate);
         },
 
@@ -441,9 +455,9 @@
               const compareToStart = compareDay(date, startDay);
 
               if (compareToStart === 1) {
-                const {
-                  days
-                } = this.selectComponent('.month').data;
+                // selectComponent h5 没有data 属性 小程序有
+                const vmonth = this.selectComponent('.month')
+                const days = vmonth.data ? vmonth.data.days : vmonth.days;
                 days.some((day, index) => {
                   const isDisabled =
                     day.type === 'disabled' &&
@@ -480,9 +494,10 @@
             if (selected) {
               // @ts-ignore
               const cancelDate = currentDate.splice(selectedIndex, 1);
-              this.setData({
-                currentDate
-              });
+              this.currentDate = currentDate
+              // this.setData({
+              //   currentDate
+              // });
               this.unselect(cancelDate);
             } else {
               // @ts-ignore
