@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import VanTransition from '@/packages/van-transition/van-transition'
+import VanTransition from './../van-transition/van-transition'
 import { VantComponent } from '../common/component'
 export default {
   components: {
