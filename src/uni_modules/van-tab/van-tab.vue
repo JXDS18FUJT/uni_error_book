@@ -70,7 +70,10 @@ export default VantComponent({
   },
 
   created() {
-    this.update()
+	  setTimeout(()=>{
+		  this.update()
+	  },1000/30)
+    
   },
 
   methods: {
@@ -96,9 +99,10 @@ export default VantComponent({
     },
 
     update() {
+	
       if (this.vanTabs) {
         this.vanTabs.updateTabs(this)
-      }
+      } 
     }
   }
 })

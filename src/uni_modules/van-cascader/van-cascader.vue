@@ -8,7 +8,7 @@
 
     <van-tabs :active="activeTab" tab-class="van-cascader__tab" custom-class="van-cascader__tabs" :swipeable="swipeable"
       :ellipsis="ellipsis" :color="activeColor" @click="onClickTab" :border="false">
-      <van-tab v-for="(tab, tabIndex) in tabs" :key="tabIndex"
+      <van-tab v-for="(tab, tabIndex) in tabs" :name="tabIndex" :key="tabIndex"
         :title="tab.selected ? tab.selected[textKey] : placeholder" :title-style="
           !tab.selected ? 'color: #969799; font-weight: normal;' : ''
         ">
@@ -59,6 +59,7 @@
         title: String,
         value: {
           type: String,
+          default:''
         },
         placeholder: {
           type: String,

@@ -10,9 +10,25 @@
 		    showCalendar= false
 		  }" /> -->
 		
-		  <van-cascader v-if="showCalendar" :value="value" title="选择地区" :options="options"
-		     />
+		<!-- <van-tabs :active="active" type="line" tab-class="special-tab">
+		    <van-tab
+		      v-for="(item, index) in tabs2"
+		      :key="index"
+		      :title="'标签 ' + item"
+			  :name="'标签 ' + item"
+		    >
+		      <view class="content-2">
+		        {{ '内容' + item }}
+		      </view>
+		    </van-tab>
+		  </van-tabs> -->
 		
+		<!-- <van-popup :show="showCalendar" round position="bottom"> -->
+		 <van-cascader v-if="showCalendar" :value="value" title="选择地区" :options="options"
+		    @close="()=>{
+				showCalendar=false
+			}" />
+		<!-- </van-popup> -->
 		</view>
 	</view>
 
@@ -24,7 +40,7 @@
 	import api from '@/api'
 	const options = [{
 		text: "浙江省",
-		value: "330000",
+		value: [],
 		children: [{
 			text: "杭州市",
 			value: "330100",
@@ -112,9 +128,10 @@
 	export default {
 		data() {
 			return {
+				active:1,
 				tabs2: [0, 2],
 				options,
-				value: '330100',
+				value: '',
 				formatter: undefined,
 				confirmText: undefined,
 				confirmDisabledText: undefined,
@@ -129,6 +146,13 @@
 			}
 		},
 		methods: {
+			loadDynamicOptions(e) {
+			  const {
+			    value
+			  } = e;
+			  console.log(e)
+			  this.value = value
+			},
 			showLongToast() {
 				Toast('这是一条长文字提示，超过一定字数就会换行');
 			},

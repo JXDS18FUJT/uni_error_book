@@ -46,6 +46,7 @@
     getPrevDay,
     getNextDay,
     formatMonthTitle,
+
     getDayStyle,
     getMonthStyle
   } from '../../utils';
