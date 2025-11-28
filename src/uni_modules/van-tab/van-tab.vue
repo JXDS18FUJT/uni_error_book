@@ -101,6 +101,7 @@ export default VantComponent({
     update() {
 	
       if (this.vanTabs) {
+		  
         this.vanTabs.updateTabs(this)
       } 
     }

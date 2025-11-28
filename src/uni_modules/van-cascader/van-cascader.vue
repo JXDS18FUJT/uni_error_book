@@ -2,7 +2,7 @@
   <view>
     <view v-if="showHeader" class="van-cascader__header">
       <slot name="title" v-if="useTitleSlot"></slot>
-      <span class="van-cascader__title" v-else>{{ title }}</span>
+      <text class="van-cascader__title" v-else>{{ title }}</text>
       <van-icon v-if="closeable" :name="closeIcon" class="van-cascader__close-icon" @click="onClose" />
     </view>
 
@@ -40,7 +40,8 @@
   import VanIcon from "../van-icon/van-icon";
   import vanTabs from "../van-tabs/van-tabs.vue";
   import vanTab from "../van-tab/van-tab.vue";
-  const utils = require("../wxs/utils");
+  import utils from "../wxs/utils.js"
+  // const utils = require("../wxs/utils");
   let defaultFieldNames = {
     text: "text",
     value: "value",

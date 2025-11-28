@@ -315,6 +315,7 @@
 				},
 
 				getChildren() {
+					
 					return getComponentByOptionsName(this, 'VanTab')
 				},
 

@@ -1,5 +1,4 @@
 import * as shvl from 'shvl'
-
 // 通过id获取组件
 const defaultOptions = {
   childrenKey: '$children',
@@ -23,6 +22,7 @@ function getChildren(obj, options = {}) {
     ...options
   }
   const children = []
+  console.log(obj,options.childrenKey)
   children.push(...obj[options.childrenKey].filter(item => filterFn(item, options)))
   for (let i = 0, length = obj[options.childrenKey].length; i < length; i++) {
     if (obj[options.childrenKey][i][options.childrenKey].length) {

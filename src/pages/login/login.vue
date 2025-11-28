@@ -10,7 +10,7 @@
 		    showCalendar= false
 		  }" /> -->
 		
-		<!-- <van-tabs :active="active" type="line" tab-class="special-tab">
+		<van-tabs :active="active" type="line" tab-class="special-tab">
 		    <van-tab
 		      v-for="(item, index) in tabs2"
 		      :key="index"
@@ -21,7 +21,7 @@
 		        {{ '内容' + item }}
 		      </view>
 		    </van-tab>
-		  </van-tabs> -->
+		  </van-tabs>
 		
 		<!-- <van-popup :show="showCalendar" round position="bottom"> -->
 		 <van-cascader v-if="showCalendar" :value="value" title="选择地区" :options="options"
