@@ -232,9 +232,13 @@
 					this.scrollable = children.length > val || !this.ellipsis
 				}
 			},
+			created() {
+			  this.children = [];
+			  console.log(this.children);
+			},
 
 			mounted() {
-				console.log('mounted')
+				
 				setTimeout(() => {
 
 					this.resize()
