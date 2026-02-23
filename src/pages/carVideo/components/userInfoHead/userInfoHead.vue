@@ -41,6 +41,7 @@
 	const userStore = useUserStore()
 
 	const { userInfo, isVip } = storeToRefs(userStore)
+	console.log(userInfo)
 
 </script>
 

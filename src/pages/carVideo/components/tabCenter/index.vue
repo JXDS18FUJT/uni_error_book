@@ -21,7 +21,7 @@
 
 <script setup lang="ts">
 	import { onLoad } from '@dcloudio/uni-app'
-
+	import { useUserStore } from '@/store/user'
 	defineProps({
 		centerList: Array as () => ({ text : string, img : string, path : string }[]),
 		subject: Number
@@ -38,11 +38,12 @@
 			sort : string;
 		}
 	})
-
+	const userStore = useUserStore()
 	const goPath = (item : { text : string, img : string, path : string }, index : number) => {
 
 		// const qcjk_set = uni.getStorageSync('qcjk_set')
-		const userInfo = uni.getStorageSync('userInfo')
+		const userInfo = userStore.userInfo
+		// const userInfo = uni.getStorageSync('userInfo')
 		//ios 强制当会员
 
 		if (platform == 'ios') {

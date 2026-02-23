@@ -2,8 +2,7 @@
 	<view class="bg-white">
 		<div class="cell-box">
 			<view v-for="(item, index) in classData" :key="index">
-				<van-cell title-class="uni-app-fontsize-paragraph" value-class="custom-right-cell" class="cell" :title="item.title
-        " center :border="false">
+				<van-cell center title-style="flex:0.75"  title-class="custom-title-font" value-class="custom-right-cell" class="cell" :title="item.title" :border="false">
 					<div class="select">
 						<div class="select-item0 uni-app-fontsize-paragraph" @click="() => {
           goExercise({
@@ -40,326 +39,375 @@
     </div> -->
 	</view>
 </template>
+<script setup lang="ts">
+	import {
+		reactive,
+		ref
+	} from 'vue'
+	import {
+		onLoad
+	} from '@dcloudio/uni-app'
 
-<script>
-	import api from "@/api/index";
-	import utils from "@/utils/index";
-	export default {
-		data() {
-			return {
-				classData: [{
-						"columnId": 1,
-						"createTime": "2025-06-16 14:39:42",
-						"id": 1,
-						"model": "cart,bus,truck",
-						"sort": 1,
-						"subject": "k1,k12",
-						"title": "练习一",
-						"updateTime": null
-					},
-					{
-						"columnId": 2,
-						"createTime": "2025-06-16 14:39:42",
-						"id": 2,
-						"model": "cart,bus,truck",
-						"sort": 2,
-						"subject": "k1,k12",
-						"title": "练习二",
-						"updateTime": null
-					},
-					{
-						"columnId": 3,
-						"createTime": "2025-06-16 14:39:42",
-						"id": 3,
-						"model": "cart,bus,truck",
-						"sort": 3,
-						"subject": "k1,k12",
-						"title": "练习三",
-						"updateTime": null
-					},
-					{
-						"columnId": 4,
-						"createTime": "2025-06-16 14:39:42",
-						"id": 4,
-						"model": "cart,bus,truck",
-						"sort": 4,
-						"subject": "k1,k12",
-						"title": "练习四",
-						"updateTime": null
-					},
-					{
-						"columnId": 5,
-						"createTime": "2025-06-16 14:39:42",
-						"id": 5,
-						"model": "cart,bus,truck",
-						"sort": 5,
-						"subject": "k1,k12",
-						"title": "练习五",
-						"updateTime": null
-					},
-					{
-						"columnId": 6,
-						"createTime": "2025-06-16 14:39:42",
-						"id": 6,
-						"model": "cart,bus,truck",
-						"sort": 6,
-						"subject": "k1,k12",
-						"title": "练习六",
-						"updateTime": null
-					},
-					{
-						"columnId": 7,
-						"createTime": "2025-06-16 14:39:42",
-						"id": 7,
-						"model": "cart,bus,truck",
-						"sort": 7,
-						"subject": "k1,k12",
-						"title": "练习七",
-						"updateTime": null
-					},
-					{
-						"columnId": 8,
-						"createTime": "2025-06-16 14:39:42",
-						"id": 8,
-						"model": "cart,bus,truck",
-						"sort": 8,
-						"subject": "k1,k12",
-						"title": "练习八",
-						"updateTime": null
-					},
-					{
-						"columnId": 9,
-						"createTime": "2025-06-16 14:39:42",
-						"id": 9,
-						"model": "cart,bus,truck",
-						"sort": 9,
-						"subject": "k1,k12",
-						"title": "练习九",
-						"updateTime": null
-					},
-					{
-						"columnId": 10,
-						"createTime": "2025-06-16 14:39:42",
-						"id": 10,
-						"model": "cart,bus,truck",
-						"sort": 10,
-						"subject": "k1,k12",
-						"title": "练习十",
-						"updateTime": null
-					},
-					{
-						"columnId": 11,
-						"createTime": "2025-06-16 14:39:43",
-						"id": 11,
-						"model": "cart,bus,truck",
-						"sort": 11,
-						"subject": "k1,k12",
-						"title": "练习十一",
-						"updateTime": null
-					},
-					{
-						"columnId": 12,
-						"createTime": "2025-06-16 14:39:43",
-						"id": 12,
-						"model": "cart,bus,truck",
-						"sort": 12,
-						"subject": "k1,k12",
-						"title": "练习十二",
-						"updateTime": null
-					},
-					{
-						"columnId": 13,
-						"createTime": "2025-06-16 14:39:43",
-						"id": 13,
-						"model": "cart,bus,truck",
-						"sort": 13,
-						"subject": "k1,k12",
-						"title": "交警信号",
-						"updateTime": null
-					},
-					{
-						"columnId": 14,
-						"createTime": "2025-06-16 14:39:43",
-						"id": 14,
-						"model": "cart,bus,truck",
-						"sort": 14,
-						"subject": "k1,k12",
-						"title": "交通标线",
-						"updateTime": null
-					},
-					{
-						"columnId": 15,
-						"createTime": "2025-06-16 14:39:43",
-						"id": 15,
-						"model": "cart,bus,truck",
-						"sort": 15,
-						"subject": "k1,k12",
-						"title": "机械仪表",
-						"updateTime": null
-					},
-					{
-						"columnId": 16,
-						"createTime": "2025-06-16 14:39:43",
-						"id": 16,
-						"model": "cart,bus,truck",
-						"sort": 16,
-						"subject": "k1,k12",
-						"title": "扣分题一",
-						"updateTime": null
-					},
-					{
-						"columnId": 17,
-						"createTime": "2025-06-16 14:39:43",
-						"id": 17,
-						"model": "cart,bus,truck",
-						"sort": 17,
-						"subject": "k1,k12",
-						"title": "扣分题二",
-						"updateTime": null
-					},
-					{
-						"columnId": 18,
-						"createTime": "2025-06-16 14:39:43",
-						"id": 18,
-						"model": "cart,bus,truck",
-						"sort": 18,
-						"subject": "k1,k12",
-						"title": "罚款题目",
-						"updateTime": null
-					},
-					{
-						"columnId": 19,
-						"createTime": "2025-06-16 14:39:43",
-						"id": 19,
-						"model": "cart,bus,truck",
-						"sort": 19,
-						"subject": "k1,k12",
-						"title": "禁令标志",
-						"updateTime": null
-					},
-					{
-						"columnId": 20,
-						"createTime": "2025-06-16 14:39:43",
-						"id": 20,
-						"model": "cart,bus,truck",
-						"sort": 20,
-						"subject": "k1,k12",
-						"title": "警告标志",
-						"updateTime": null
-					},
-					{
-						"columnId": 21,
-						"createTime": "2025-06-16 14:39:44",
-						"id": 21,
-						"model": "cart,bus,truck",
-						"sort": 21,
-						"subject": "k1,k12",
-						"title": "指示标志",
-						"updateTime": null
-					},
-					{
-						"columnId": 22,
-						"createTime": "2025-06-16 14:39:44",
-						"id": 22,
-						"model": "cart,bus,truck",
-						"sort": 22,
-						"subject": "k1,k12",
-						"title": "指路标志",
-						"updateTime": null
-					},
-					{
-						"columnId": 23,
-						"createTime": "2025-06-16 14:39:44",
-						"id": 23,
-						"model": "cart,bus,truck",
-						"sort": 23,
-						"subject": "k1,k12",
-						"title": "灯光使用",
-						"updateTime": null
-					},
-					{
-						"columnId": 24,
-						"createTime": "2025-06-16 14:39:44",
-						"id": 24,
-						"model": "cart,bus,truck",
-						"sort": 24,
-						"subject": "k1,k12",
-						"title": "救援毒品",
-						"updateTime": null
-					},
-					{
-						"columnId": 25,
-						"createTime": "2025-06-16 14:39:44",
-						"id": 25,
-						"model": "cart,bus,truck",
-						"sort": 30,
-						"subject": "k1,k12",
-						"title": "新能源题",
-						"updateTime": null
-					},
-					{
-						"columnId": 35,
-						"createTime": "2025-06-16 14:39:44",
-						"id": 26,
-						"model": "cart",
-						"sort": 30,
-						"subject": "k1,k12",
-						"title": "新增题目",
-						"updateTime": null
-					}
-				],
-				classifyTip: ["软件题库已同步更新至车管所最新"],
-				query: {
-					title: "",
-					vehicle: "",
-				},
-			};
-		},
-		methods: {
-			goExercise(extraQuery) {
+	// import api from '@/api' // 如需要
+	// import utils from '@/utils' // 按你的实际路径引入
 
-				let query = Object.assign({}, this.query);
-				if (extraQuery) {
-					query = {
-						...query,
-						...extraQuery,
-					};
-				} else {}
+	// 1️⃣ 数据
+	const classData = ref([{
+		"columnId": 1,
+		"createTime": "2025-06-16 14:39:42",
+		"id": 1,
+		"model": "cart,bus,truck",
+		"sort": 1,
+		"subject": "k1,k12",
+		"title": "练习一",
+		"updateTime": null
+	},
+	{
+		"columnId": 2,
+		"createTime": "2025-06-16 14:39:42",
+		"id": 2,
+		"model": "cart,bus,truck",
+		"sort": 2,
+		"subject": "k1,k12",
+		"title": "练习二",
+		"updateTime": null
+	},
+	{
+		"columnId": 3,
+		"createTime": "2025-06-16 14:39:42",
+		"id": 3,
+		"model": "cart,bus,truck",
+		"sort": 3,
+		"subject": "k1,k12",
+		"title": "练习三",
+		"updateTime": null
+	},
+	{
+		"columnId": 4,
+		"createTime": "2025-06-16 14:39:42",
+		"id": 4,
+		"model": "cart,bus,truck",
+		"sort": 4,
+		"subject": "k1,k12",
+		"title": "练习四",
+		"updateTime": null
+	},
+	{
+		"columnId": 5,
+		"createTime": "2025-06-16 14:39:42",
+		"id": 5,
+		"model": "cart,bus,truck",
+		"sort": 5,
+		"subject": "k1,k12",
+		"title": "练习五",
+		"updateTime": null
+	},
+	{
+		"columnId": 6,
+		"createTime": "2025-06-16 14:39:42",
+		"id": 6,
+		"model": "cart,bus,truck",
+		"sort": 6,
+		"subject": "k1,k12",
+		"title": "练习六",
+		"updateTime": null
+	},
+	{
+		"columnId": 7,
+		"createTime": "2025-06-16 14:39:42",
+		"id": 7,
+		"model": "cart,bus,truck",
+		"sort": 7,
+		"subject": "k1,k12",
+		"title": "练习七",
+		"updateTime": null
+	},
+	{
+		"columnId": 8,
+		"createTime": "2025-06-16 14:39:42",
+		"id": 8,
+		"model": "cart,bus,truck",
+		"sort": 8,
+		"subject": "k1,k12",
+		"title": "练习八",
+		"updateTime": null
+	},
+	{
+		"columnId": 9,
+		"createTime": "2025-06-16 14:39:42",
+		"id": 9,
+		"model": "cart,bus,truck",
+		"sort": 9,
+		"subject": "k1,k12",
+		"title": "练习九",
+		"updateTime": null
+	},
+	{
+		"columnId": 10,
+		"createTime": "2025-06-16 14:39:42",
+		"id": 10,
+		"model": "cart,bus,truck",
+		"sort": 10,
+		"subject": "k1,k12",
+		"title": "练习十",
+		"updateTime": null
+	},
+	{
+		"columnId": 11,
+		"createTime": "2025-06-16 14:39:43",
+		"id": 11,
+		"model": "cart,bus,truck",
+		"sort": 11,
+		"subject": "k1,k12",
+		"title": "练习十一",
+		"updateTime": null
+	},
+	{
+		"columnId": 12,
+		"createTime": "2025-06-16 14:39:43",
+		"id": 12,
+		"model": "cart,bus,truck",
+		"sort": 12,
+		"subject": "k1,k12",
+		"title": "练习十二",
+		"updateTime": null
+	},
+	{
+		"columnId": 13,
+		"createTime": "2025-06-16 14:39:43",
+		"id": 13,
+		"model": "cart,bus,truck",
+		"sort": 13,
+		"subject": "k1,k12",
+		"title": "交警信号",
+		"updateTime": null
+	},
+	{
+		"columnId": 14,
+		"createTime": "2025-06-16 14:39:43",
+		"id": 14,
+		"model": "cart,bus,truck",
+		"sort": 14,
+		"subject": "k1,k12",
+		"title": "交通标线",
+		"updateTime": null
+	},
+	{
+		"columnId": 15,
+		"createTime": "2025-06-16 14:39:43",
+		"id": 15,
+		"model": "cart,bus,truck",
+		"sort": 15,
+		"subject": "k1,k12",
+		"title": "机械仪表",
+		"updateTime": null
+	},
+	{
+		"columnId": 16,
+		"createTime": "2025-06-16 14:39:43",
+		"id": 16,
+		"model": "cart,bus,truck",
+		"sort": 16,
+		"subject": "k1,k12",
+		"title": "扣分题一",
+		"updateTime": null
+	},
+	{
+		"columnId": 17,
+		"createTime": "2025-06-16 14:39:43",
+		"id": 17,
+		"model": "cart,bus,truck",
+		"sort": 17,
+		"subject": "k1,k12",
+		"title": "扣分题二",
+		"updateTime": null
+	},
+	{
+		"columnId": 18,
+		"createTime": "2025-06-16 14:39:43",
+		"id": 18,
+		"model": "cart,bus,truck",
+		"sort": 18,
+		"subject": "k1,k12",
+		"title": "罚款题目",
+		"updateTime": null
+	},
+	{
+		"columnId": 19,
+		"createTime": "2025-06-16 14:39:43",
+		"id": 19,
+		"model": "cart,bus,truck",
+		"sort": 19,
+		"subject": "k1,k12",
+		"title": "禁令标志",
+		"updateTime": null
+	},
+	{
+		"columnId": 20,
+		"createTime": "2025-06-16 14:39:43",
+		"id": 20,
+		"model": "cart,bus,truck",
+		"sort": 20,
+		"subject": "k1,k12",
+		"title": "警告标志",
+		"updateTime": null
+	},
+	{
+		"columnId": 21,
+		"createTime": "2025-06-16 14:39:44",
+		"id": 21,
+		"model": "cart,bus,truck",
+		"sort": 21,
+		"subject": "k1,k12",
+		"title": "指示标志",
+		"updateTime": null
+	},
+	{
+		"columnId": 22,
+		"createTime": "2025-06-16 14:39:44",
+		"id": 22,
+		"model": "cart,bus,truck",
+		"sort": 22,
+		"subject": "k1,k12",
+		"title": "指路标志",
+		"updateTime": null
+	},
+	{
+		"columnId": 23,
+		"createTime": "2025-06-16 14:39:44",
+		"id": 23,
+		"model": "cart,bus,truck",
+		"sort": 23,
+		"subject": "k1,k12",
+		"title": "灯光使用",
+		"updateTime": null
+	},
+	{
+		"columnId": 24,
+		"createTime": "2025-06-16 14:39:44",
+		"id": 24,
+		"model": "cart,bus,truck",
+		"sort": 24,
+		"subject": "k1,k12",
+		"title": "救援毒品",
+		"updateTime": null
+	},
+	{
+		"columnId": 25,
+		"createTime": "2025-06-16 14:39:44",
+		"id": 25,
+		"model": "cart,bus,truck",
+		"sort": 30,
+		"subject": "k1,k12",
+		"title": "新能源题",
+		"updateTime": null
+	},
+	{
+		"columnId": 35,
+		"createTime": "2025-06-16 14:39:44",
+		"id": 26,
+		"model": "cart",
+		"sort": 30,
+		"subject": "k1,k12",
+		"title": "新增题目",
+		"updateTime": null
+	}
+	])
+	const getClassData = () => {
+		console.log('获取数据中')
 
-				uni.navigateTo({
-					url: "/otherPages/exercise/index?" + utils.mapToUrlQuery(query),
-				});
-			},
-			goExerciseExam(extraQuery) {
-				let query = Object.assign({}, this.query);
-				if (extraQuery) {
-					query = {
-						...query,
-						...extraQuery,
-					};
-				} else {}
+	}
 
-				uni.navigateTo({
-					url: "/otherPages/exerciseExam/index?" + utils.mapToUrlQuery(query),
-				});
-			},
-		},
-		onLoad(op) {
-			this.query = op;
-		},
-		mounted() {
-			// api.exam.studentQuestion2InfoGetQuestionColumn({
-			//   subject: `${(this.query.oldSubject||'k'+this.query.subject)}`,
-			//   model: this.query.model
-			// }).then(res => {
-			//   this.classData = res.data;
-			// })
-		},
-	};
+	const classifyTip = ref(['软件题库已同步更新至车管所最新'])
+
+	const query = reactive({
+		title: '',
+		vehicle: ''
+	})
+	//const mapToUrlQuery = utils.mapToUrlQuery
+
+
+	const mapToUrlQuery = function (map : { [x : string] : string }) {
+		let str = ""
+		if (typeof map !== 'object') {
+			return ''
+		}
+		for (const key in map) {
+			if (Object.hasOwnProperty.call(map, key)) {
+				if (map[key]) {
+					str += (key + "=" + map[key]) + "&"
+				}
+
+
+
+			}
+		}
+		// console.log(str)
+		return str
+
+	}
+
+	// 2️⃣ 方法
+	function goExercise(extraQuery : object) {
+		let finalQuery = {
+			...query
+		}
+
+		if (extraQuery) {
+			finalQuery = {
+				...finalQuery,
+				...extraQuery
+			}
+		}
+
+		uni.navigateTo({
+			url: `/otherPages/exercise/index?${mapToUrlQuery(finalQuery)}`
+		})
+	}
+
+	function goExerciseExam(extraQuery : object) {
+		let finalQuery = {
+			...query
+		}
+
+		if (extraQuery) {
+			finalQuery = {
+				...finalQuery,
+				...extraQuery
+			}
+		}
+
+		uni.navigateTo({
+			url: `/otherPages/exerciseExam/index?${mapToUrlQuery(finalQuery)}`
+		})
+	}
+
+	// 3️⃣ 生命周期（uni-app）
+	onLoad((op) => {
+		getClassData()
+		Object.assign(query, op)
+	})
+
+	// 4️⃣ mounted（如后续需要）
+	// onMounted(() => {
+	//   api.exam.studentQuestion2InfoGetQuestionColumn({
+	//     subject: `${query.oldSubject || 'k' + query.subject}`,
+	//     model: query.model
+	//   }).then(res => {
+	//     classData.value = res.data
+	//   })
+	// })
 </script>
+
+
 <style>
 	.custom-right-cell {
 		flex: 1.8 !important;
+	}
+
+	.custom-title-font {
+		font-size: 30rpx;
+	
 	}
 </style>
 

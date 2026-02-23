@@ -1,0 +1,75 @@
+<template>
+  <view @tap.native="clickCheckbox" :data-item="item" class="checkbox">
+    <view
+      :data-item="item"
+      class="custom-icon"
+      :class="{
+        'problem-op_selected': item.selected,
+      }"
+      v-if="useIconSlot"
+      >{{ name }}</view
+    >
+    <view :data-item="item" style="width: 8px"></view>
+    <text :data-item="item">{{ item.value }}</text>
+  </view>
+</template>
+
+<script>
+export default {
+  data() {
+    return {};
+  },
+  methods: {
+    stopClick(e) {
+      e.stopPropagation();
+    },
+    clickCheckbox(e) {
+      console.log(e);
+      this.$emit("clickcheckbox", e);
+      e.stopPropagation();
+    },
+  },
+  props: {
+    useIconSlot: {
+      type: Boolean,
+      default: false,
+    },
+    value: {
+      type: String,
+      default: "",
+    },
+    name: {
+      type: String,
+      default: "",
+    },
+    item: {
+      type: Object,
+      default: () => {
+        return {};
+      },
+    },
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+.checkbox {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  padding: 8px 0;
+}
+.custom-icon {
+  width: 75rpx;
+  height: 75rpx;
+  line-height: 75rpx;
+  border-radius: 50%;
+  text-align: center;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0px 4rpx 12rpx rgba(0, 0, 0, 0.16);
+}
+.problem-op_selected {
+  background: #498ef5;
+}
+</style>

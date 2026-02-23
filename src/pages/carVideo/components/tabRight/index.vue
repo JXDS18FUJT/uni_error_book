@@ -10,6 +10,7 @@
 <script lang="ts" setup>
 	import { onLoad } from '@dcloudio/uni-app';
 	import utils from '../../../../utils';
+		import {useUserStore} from '@/store/user'
 	let query = {
 		title: '',
 		sort: '1'
@@ -28,14 +29,15 @@
 		rightList: Array as () => ({ text : string, img : string, path : string }[]),
 		subject: Number
 	})
+	const userStore =useUserStore()
 	const goPath = (item : { text : string, img : string, path : string }, index : number) => {
 
 		// const qcjk_set = uni.getStorageSync('qcjk_set')
-		const userInfo = uni.getStorageSync('userInfo')
+		// const userInfo = uni.getStorageSync('userInfo')
 		//ios 强制当会员
 
 		if (platform == 'ios') {
-			userInfo.isVip = 1
+			userStore.userInfo.isVip = 1
 
 		};
 

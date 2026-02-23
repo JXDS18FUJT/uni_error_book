@@ -1,8 +1,45 @@
 import { defineStore } from 'pinia'
 
+interface  UserState  {
+  count: number;
+  name: string;
+  isAdmin:boolean;
+  hasChanged:boolean;
+  items:any[];
+  userInfo:{
+	  appOpenid:null|string;
+	  balancePrice:number;
+	  coachId:null|string;
+	  createTime:string;
+	  expTime:string;
+	  gzhOpenid:string;
+	  headImage:string;
+	  id:number;
+	  isBm:number;
+	  isVip:number;
+	  phone:string;
+	  nickName:string;
+	  platformType:null|string
+	  puserId:number;
+	  realName:string;
+	  salUserId:null;
+	  sessionKey:null;
+	  shopId:number;
+	  status:number;
+	  tgLevel:number;
+	  unionId:string;
+	  updateTime:string;
+	  webOpenid:string;
+	  wechar:null;
+	  xcxOpenid:string
+	  
+  }
+  
+}
+
 export const useUserStore = defineStore('user', {
 	// arrow function recommended for full type inference
-	state: () => {
+	state: ():UserState => {
 		return {
 			// all these properties will have their type inferred automatically
 			count: 0,
@@ -41,6 +78,7 @@ export const useUserStore = defineStore('user', {
 	},
 	getters:{
 		isVip:(state) => state.userInfo.isVip,
+	
 		
 	},
 	actions: {

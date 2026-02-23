@@ -2,7 +2,7 @@
 	<view>
 		<view class="pr-16 pl-16 bg-gray">
 			<view class="text-center text-48 pb-8 pt-8">系统</view>
-			<van-toast ref="van-toast" id="van-toast" />
+		
 			<van-button type="primary" @click="showLongToast">长文字提示</van-button>
 			<!-- <van-calendar closeOnClickOverlay :show="showCalendar" :position="'bottom'" type="single" :poppable="false"
 				:formatter="formatter" :show-confirm="true" :confirm-text="confirmText"
@@ -36,7 +36,7 @@
 
 </template>
 <script lang="ts">
-	import Toast from '@/uni_modules/van-toast/toast.js'
+
 	import api from '@/api'
 	const options = [{
 		text: "浙江省",
@@ -154,7 +154,7 @@
 			  this.value = value
 			},
 			showLongToast() {
-				Toast('这是一条长文字提示，超过一定字数就会换行');
+				
 			},
 			onClick() {
 
