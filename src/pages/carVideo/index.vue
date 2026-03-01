@@ -180,7 +180,6 @@
 	import tabCenter from './components/tabCenter/index.vue';
 	import userInfoHead from './components/userInfoHead/userInfoHead.vue';
 	import teacherVideo from './../teacherVideo/index.vue'
-	const msg = ref('hello world')
 	const systemInfo = uni.getSystemInfoSync()
 
 

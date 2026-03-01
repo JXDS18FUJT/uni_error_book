@@ -33,14 +33,14 @@
 			}
 		},
 		{
-			"path": "pages/course/course",
+			"path": "pages/course/index",
 			"style": {
 				"navigationBarTitleText": "课程"
 		
 			}
 		},
 		{
-			"path": "pages/buyExamTool/buyExamTool",
+			"path": "pages/buyExamTool/index",
 			"style": {
 				"navigationBarTitleText": "购买"
 		
@@ -118,6 +118,20 @@
 					"navigationBarTitleText": "练习",
 					"enablePullDownRefresh": false
 				}
+			},
+			{
+				"path": "videoSubjectList/index",
+				"style": {
+					"navigationBarTitleText": "视频",
+					"enablePullDownRefresh": false
+				}
+			},
+			{
+				"path": "examRoadVideo/index",
+				"style": {
+					"navigationBarTitleText": "视频",
+					"enablePullDownRefresh": false
+				}
 			}
 		]
 	}],
@@ -139,13 +153,13 @@
 				"text": "科二科三"
 			},
 			{
-				"pagePath": "pages/course/course",
+				"pagePath": "pages/course/index",
 				"iconPath": "static/imgs/course.png",
 				"selectedIconPath": "static/imgs/course-active.png",
 				"text": "课程"
 			},
 			{
-				"pagePath": "pages/buyExamTool/buyExamTool",
+				"pagePath": "pages/buyExamTool/index",
 				"iconPath": "static/imgs/tool.png",
 				"selectedIconPath": "static/imgs/tool-active.png",
 				"text": "驾考神器"
